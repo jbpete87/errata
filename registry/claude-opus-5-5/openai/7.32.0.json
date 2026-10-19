@@ -1,0 +1,198 @@
+{
+  "package": "openai",
+  "version": "7.32.0",
+  "model": "claude-opus-5-5",
+  "measured": "2026-10-11",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 24,
+      "errors": 0,
+      "deprecations": 0
+    }
+  ],
+  "card": [],
+  "lines": [],
+  "remaining": [],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "chat",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tools",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tools",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tools",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "batch",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "batch",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "batch",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "media",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "media",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "media",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "errors",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "errors",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "errors",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}

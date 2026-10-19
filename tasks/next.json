@@ -1,0 +1,34 @@
+[
+  {
+    "id": "dynamic-page",
+    "goal": "Write the page for /blog/[slug]: read the slug and an optional ?preview flag, fetch the post, set the page title and description from it, return a 404 if it does not exist, and pre-render the known slugs at build time."
+  },
+  {
+    "id": "route-handler",
+    "goal": "Write the API route for /api/items/[id]: GET returns the item as JSON using an auth token read from the request cookies and a header, DELETE removes it and returns 204. Opt the route out of caching."
+  },
+  {
+    "id": "intercept",
+    "goal": "Write the project-level file that runs before every request under /dashboard, redirects visitors without a session cookie to /login with the original path in a query parameter, and adds a security header to every other response."
+  },
+  {
+    "id": "server-action",
+    "goal": "Write a server-side form handler for creating a post and the form component that uses it: validate the title, show the returned error and a pending state on the button, refresh the cached post list, and redirect to the new post."
+  },
+  {
+    "id": "config",
+    "goal": "Write the framework config file in TypeScript: allow optimized images from images.example.com over https, add a permanent redirect from /old to /new, enable statically typed links, and turn on the React compiler."
+  },
+  {
+    "id": "caching",
+    "goal": "Write a data-access module with a function that fetches a product list and caches the result for an hour under a tag, and a function that invalidates that tag after a product is updated so the next visit sees fresh data."
+  },
+  {
+    "id": "metadata-files",
+    "goal": "Write the module that generates the site's sitemap from a list of posts with last-modified dates, and in the same answer describe the root layout's exported metadata with a title template, Open Graph image and canonical base URL."
+  },
+  {
+    "id": "client-nav",
+    "goal": "Write a client-side search component: an input that updates the ?q= query string as the user types without a full reload, a link to the first result that prefetches, an optimized responsive image, and a button that goes back."
+  }
+]

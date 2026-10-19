@@ -1,0 +1,34 @@
+[
+  {
+    "id": "chat",
+    "goal": "Send a system instruction and a user question to a chat model with a cap on the reply length, and return the reply text and the number of tokens used."
+  },
+  {
+    "id": "stream",
+    "goal": "Stream a model's reply to stdout token by token and return the full text once the stream ends."
+  },
+  {
+    "id": "structured",
+    "goal": "Ask the model to extract an event (name, ISO date, list of attendees) from a sentence and return it as a validated, typed object using a zod schema."
+  },
+  {
+    "id": "tools",
+    "goal": "Offer the model a function for looking up the weather in a city, run the function when the model asks for it, send the result back, and return the model's final answer."
+  },
+  {
+    "id": "embeddings",
+    "goal": "Embed an array of strings in a single request and return the vectors in the same order."
+  },
+  {
+    "id": "batch",
+    "goal": "Upload an in-memory JSONL buffer of chat requests as a file, start an asynchronous batch job over it with a 24 hour window, and return the job id and status."
+  },
+  {
+    "id": "media",
+    "goal": "Generate one 1024x1024 image from a text prompt and return it as base64, and separately transcribe an in-memory MP3 buffer to text."
+  },
+  {
+    "id": "errors",
+    "goal": "Wrap a model call so that rate-limit errors are retried with backoff, authentication errors are rethrown with a clearer message, and any other API error is logged with its HTTP status and request id. Configure the client with a 20 second timeout and no built-in retries."
+  }
+]

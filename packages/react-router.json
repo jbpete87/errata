@@ -1,0 +1,16 @@
+{
+  "name": "react-router",
+  "extras": [
+    "@react-router/dev",
+    "@react-router/node",
+    "react",
+    "react-dom",
+    "@types/react",
+    "@types/react-dom"
+  ],
+  "family": [
+    "@react-router/"
+  ],
+  "tsx": true,
+  "context": "This is a React app; write a .tsx module."
+}

@@ -1,0 +1,15 @@
+{
+  "name": "astro",
+  "extras": [
+    "@astrojs/react",
+    "@astrojs/sitemap",
+    "@astrojs/node"
+  ],
+  "family": [
+    "@astrojs/"
+  ],
+  "types": [
+    "astro/client"
+  ],
+  "context": "Write a TypeScript (.ts) file, not an .astro component."
+}

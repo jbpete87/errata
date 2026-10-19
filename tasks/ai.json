@@ -1,0 +1,10 @@
+[
+  { "id": "one-shot", "goal": "Ask a model one question with a system instruction and a cap on output length, then return the answer text together with the input, output and total token counts." },
+  { "id": "chat-route", "goal": "Write a web-standard POST handler (Request in, Response out) for a chat UI. The client sends its message history in the body; stream the assistant's reply back in the format the SDK's React chat hook expects." },
+  { "id": "tool-loop", "goal": "Give the model a weather lookup tool that takes a city name, let it call the tool and continue for up to five steps, and return the final answer plus the name and arguments of every tool call it made." },
+  { "id": "structured", "goal": "Get the model to return a recipe as a validated object with a name, a list of ingredients (each with name and amount) and a list of steps, and return that typed object." },
+  { "id": "stream-text", "goal": "Stream a completion to stdout piece by piece as it arrives, and when it finishes log the finish reason and total token usage." },
+  { "id": "embeddings", "goal": "Embed a list of strings in one call, embed a separate query string, and return the index of the list item most similar to the query." },
+  { "id": "history", "goal": "Keep a running conversation in memory across multiple turns: export a function that takes the next user message, calls the model with the full history, appends everything the model produced to the history, and returns the reply text." },
+  { "id": "stream-object", "goal": "Stream a structured list of three product ideas (title and one-line pitch) so a caller can render partial results as they arrive, and resolve with the final validated list." }
+]

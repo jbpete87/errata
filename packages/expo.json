@@ -1,0 +1,22 @@
+{
+  "name": "expo",
+  "extras": [
+    "expo-router",
+    "expo-camera",
+    "expo-notifications",
+    "expo-file-system",
+    "expo-secure-store",
+    "expo-sqlite",
+    "expo-image",
+    "expo-location",
+    "react",
+    "react-native",
+    "@types/react"
+  ],
+  "family": [
+    "expo-",
+    "@expo/"
+  ],
+  "tsx": true,
+  "context": "This is an Expo React Native app; write a .tsx module."
+}

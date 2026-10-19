@@ -1,0 +1,34 @@
+[
+  {
+    "id": "data-router",
+    "goal": "Set up client-side routing for an app with a root layout, an index page, and an item detail page that loads its data before rendering and shows a 404 message when the item is missing. Export the root component that mounts the router."
+  },
+  {
+    "id": "form-action",
+    "goal": "Write a route component with a form that creates a todo: validate the title on submit, show the validation error next to the field, disable the button while the submission is in flight, and redirect to the list on success."
+  },
+  {
+    "id": "fetcher",
+    "goal": "Write a like button component that submits to another route without navigating, shows the new state optimistically while the request is pending, and reads the result when it returns."
+  },
+  {
+    "id": "search-params",
+    "goal": "Write a product list component with a search box and page number kept in the URL query string, updating the URL as the user types without adding history entries."
+  },
+  {
+    "id": "route-config",
+    "goal": "Write the route configuration file for a framework-mode app: a home page, a dashboard layout with nested settings and billing pages, a dynamic user profile page, and a catch-all not-found page."
+  },
+  {
+    "id": "route-module",
+    "goal": "Write a framework-mode route module for a user profile page: load the user on the server, set the page title from the loaded data, handle a form post that updates the display name, and render an error boundary."
+  },
+  {
+    "id": "auth-guard",
+    "goal": "Add an authentication check that runs before every route under /app, redirects anonymous visitors to /login with the original path remembered, and makes the current user available to the loaders below it."
+  },
+  {
+    "id": "blocker-defer",
+    "goal": "Write an editor route component that warns before navigating away with unsaved changes, and a loader that returns the critical data immediately while a slow list of comments streams in later behind a loading placeholder."
+  }
+]

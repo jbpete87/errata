@@ -1,0 +1,6 @@
+{
+  "name": "openai",
+  "extras": [
+    "zod"
+  ]
+}

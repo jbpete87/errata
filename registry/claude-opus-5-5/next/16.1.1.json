@@ -1,0 +1,198 @@
+{
+  "package": "next",
+  "version": "16.1.1",
+  "model": "claude-opus-5-5",
+  "measured": "2026-10-11",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 24,
+      "errors": 0,
+      "deprecations": 0
+    }
+  ],
+  "card": [],
+  "lines": [],
+  "remaining": [],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "dynamic-page",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "dynamic-page",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "dynamic-page",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "route-handler",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "route-handler",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "route-handler",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "intercept",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "intercept",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "intercept",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "server-action",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "server-action",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "server-action",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "caching",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "caching",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "caching",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "metadata-files",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "metadata-files",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "metadata-files",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "client-nav",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "client-nav",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "client-nav",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}

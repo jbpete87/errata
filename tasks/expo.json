@@ -1,0 +1,34 @@
+[
+  {
+    "id": "camera",
+    "goal": "Write a screen that asks for camera permission, shows a live back-camera preview, and takes a photo when a button is pressed, displaying the captured image."
+  },
+  {
+    "id": "notifications",
+    "goal": "Write a module that asks for notification permission, schedules a local notification 60 seconds from now with a title and body, and makes notifications appear while the app is in the foreground."
+  },
+  {
+    "id": "files",
+    "goal": "Write a module that saves a JSON object to a file in the app's documents folder, reads it back, checks whether it exists, deletes it, and downloads a remote image into the cache folder."
+  },
+  {
+    "id": "secure-sqlite",
+    "goal": "Write a module that stores and reads an auth token in the device's secure storage, and opens a local SQLite database, creates a notes table if needed, inserts a note, and returns all notes as typed rows."
+  },
+  {
+    "id": "router-layout",
+    "goal": "Write the root layout file for file-based routing: a tab bar with Home and Settings tabs with icons and titles, and redirect to a sign-in screen when there is no user."
+  },
+  {
+    "id": "router-nav",
+    "goal": "Write a detail screen for the file-based route /items/[id]: read the id from the route, set the header title dynamically, link back to the list, and navigate programmatically to an edit screen with the id as a parameter."
+  },
+  {
+    "id": "image-location",
+    "goal": "Write a screen that shows a remote image with a blurred placeholder, a fade-in transition and disk caching, and displays the device's current coordinates after asking for location permission."
+  },
+  {
+    "id": "app-config",
+    "goal": "Write the dynamic app config file: name, slug, version, iOS bundle identifier, Android package, a camera usage description via the camera config plugin, and a different app name when an APP_VARIANT environment variable is set to development."
+  }
+]

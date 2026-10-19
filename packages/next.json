@@ -1,0 +1,17 @@
+{
+  "name": "next",
+  "extras": [
+    "react",
+    "react-dom",
+    "@types/react",
+    "@types/react-dom"
+  ],
+  "family": [
+    "@next/"
+  ],
+  "tsx": true,
+  "context": "This is a Next.js App Router project; write one .tsx module.",
+  "types": [
+    "next/index"
+  ]
+}

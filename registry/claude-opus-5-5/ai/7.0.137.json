@@ -1,0 +1,759 @@
+{
+  "package": "ai",
+  "version": "7.0.137",
+  "model": "claude-opus-5-5",
+  "measured": "2026-10-11",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 13,
+      "errors": 0,
+      "deprecations": 11
+    },
+    {
+      "label": "with-card-1",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 21,
+      "errors": 0,
+      "deprecations": 3
+    },
+    {
+      "label": "with-card-2",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 24,
+      "errors": 0,
+      "deprecations": 0
+    }
+  ],
+  "card": [
+    "`generateObject` and `streamObject` are deprecated in ai@7. Use `generateText` with an `output` setting instead of `generateObject`, and `streamText` with an `output` setting instead of `streamObject`.",
+    "`result.toUIMessageStreamResponse()` is deprecated. Use the standalone `toUIMessageStream` and `createUIMessageStreamResponse` helpers from `'ai'` with `result.stream` instead.",
+    "`result.response` is deprecated. Use `finalStep.response` instead.",
+    "In ai@7, `result.totalUsage` is deprecated. Use `result.usage` instead, e.g. `const usage = await result.usage;`."
+  ],
+  "lines": [
+    {
+      "text": "`generateObject` and `streamObject` are deprecated in ai@7. Use `generateText` with an `output` setting instead of `generateObject`, and `streamText` with an `output` setting instead of `streamObject`.",
+      "keys": [
+        "deprecated:generateObject",
+        "deprecated:streamObject"
+      ],
+      "foundIn": 0,
+      "before": 5,
+      "after": 0
+    },
+    {
+      "text": "`result.toUIMessageStreamResponse()` is deprecated. Use the standalone `toUIMessageStream` and `createUIMessageStreamResponse` helpers from `'ai'` with `result.stream` instead.",
+      "keys": [
+        "deprecated:toUIMessageStreamResponse"
+      ],
+      "foundIn": 0,
+      "before": 3,
+      "after": 0
+    },
+    {
+      "text": "`result.response` is deprecated. Use `finalStep.response` instead.",
+      "keys": [
+        "deprecated:response"
+      ],
+      "foundIn": 0,
+      "before": 3,
+      "after": 0
+    },
+    {
+      "text": "In ai@7, `result.totalUsage` is deprecated. Use `result.usage` instead, e.g. `const usage = await result.usage;`.",
+      "keys": [
+        "deprecated:totalUsage"
+      ],
+      "foundIn": 1,
+      "before": 3,
+      "after": 0
+    }
+  ],
+  "remaining": [],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "one-shot",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "one-shot",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "one-shot",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat-route",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:toUIMessageStreamResponse",
+              "code": 6387,
+              "name": "toUIMessageStreamResponse",
+              "message": "The signature '(options?: (ResponseInit & { keepAliveMs?: number | undefined; consumeSseStream?: ((options: { stream: ReadableStream<string>; }) => void | PromiseLike<void>) | undefined; } & UIMessageStreamOptions<...>) | undefined): Response' of 'result.toUIMessageStreamResponse' is deprecated.",
+              "snippet": "return result.toUIMessageStreamResponse();",
+              "declPkg": "ai",
+              "decl": "@deprecated Use the standalone `toUIMessageStream` and\n`createUIMessageStreamResponse` helpers from `'ai'` with `result.stream`\ninstead. This method will be removed in the next major release.\ntoUIMessageStreamResponse<UI_MESSAGE extends UIMessage>(options?: UIMessageStreamResponseInit & UIMessageStreamOptions<UI_MESSAGE>): Response;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "chat-route",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:toUIMessageStreamResponse",
+              "code": 6387,
+              "name": "toUIMessageStreamResponse",
+              "message": "The signature '(options?: (ResponseInit & { keepAliveMs?: number | undefined; consumeSseStream?: ((options: { stream: ReadableStream<string>; }) => void | PromiseLike<void>) | undefined; } & UIMessageStreamOptions<...>) | undefined): Response' of 'result.toUIMessageStreamResponse' is deprecated.",
+              "snippet": "return result.toUIMessageStreamResponse();",
+              "declPkg": "ai",
+              "decl": "@deprecated Use the standalone `toUIMessageStream` and\n`createUIMessageStreamResponse` helpers from `'ai'` with `result.stream`\ninstead. This method will be removed in the next major release.\ntoUIMessageStreamResponse<UI_MESSAGE extends UIMessage>(options?: UIMessageStreamResponseInit & UIMessageStreamOptions<UI_MESSAGE>): Response;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "chat-route",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:toUIMessageStreamResponse",
+              "code": 6387,
+              "name": "toUIMessageStreamResponse",
+              "message": "The signature '(options?: (ResponseInit & { keepAliveMs?: number | undefined; consumeSseStream?: ((options: { stream: ReadableStream<string>; }) => void | PromiseLike<void>) | undefined; } & UIMessageStreamOptions<...>) | undefined): Response' of 'result.toUIMessageStreamResponse' is deprecated.",
+              "snippet": "return result.toUIMessageStreamResponse();",
+              "declPkg": "ai",
+              "decl": "@deprecated Use the standalone `toUIMessageStream` and\n`createUIMessageStreamResponse` helpers from `'ai'` with `result.stream`\ninstead. This method will be removed in the next major release.\ntoUIMessageStreamResponse<UI_MESSAGE extends UIMessage>(options?: UIMessageStreamResponseInit & UIMessageStreamOptions<UI_MESSAGE>): Response;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "tool-loop",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tool-loop",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tool-loop",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:generateObject",
+              "code": 6385,
+              "name": "generateObject",
+              "message": "'generateObject' is deprecated.",
+              "snippet": "import { generateObject } from 'ai';",
+              "declPkg": "ai",
+              "decl": "@deprecated Use `generateText` with an `output` setting instead.\nexport declare function generateObject<SCHEMA extends FlexibleSchema$1<unknown> = FlexibleSchema$1<JSONValue$1>, OUTPUT extends 'object' | 'array' | 'enum' | 'no-schema' = InferSchema$1<SCHEMA> extends string ? 'enum' : 'object', RESULT = OUTPUT extends 'array' ? Array<InferSchema$1<SCHEMA>> : InferSchema$1<SCHEMA>>(options: Omit<LanguageModelCallOptions, 'stopSequences'> & Omit<RequestOptions, 'timeout'> & Prompt & (OUTPUT extends 'enum' ? { /** * The enum values that the model should use. */ enum: Array<RESULT>; output: 'enum'; } : OUTPUT extends 'no-schema' ? {} : { /** * The schema of the  …"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:generateObject",
+              "code": 6385,
+              "name": "generateObject",
+              "message": "'generateObject' is deprecated.",
+              "snippet": "import { generateObject } from 'ai';",
+              "declPkg": "ai",
+              "decl": "@deprecated Use `generateText` with an `output` setting instead.\nexport declare function generateObject<SCHEMA extends FlexibleSchema$1<unknown> = FlexibleSchema$1<JSONValue$1>, OUTPUT extends 'object' | 'array' | 'enum' | 'no-schema' = InferSchema$1<SCHEMA> extends string ? 'enum' : 'object', RESULT = OUTPUT extends 'array' ? Array<InferSchema$1<SCHEMA>> : InferSchema$1<SCHEMA>>(options: Omit<LanguageModelCallOptions, 'stopSequences'> & Omit<RequestOptions, 'timeout'> & Prompt & (OUTPUT extends 'enum' ? { /** * The enum values that the model should use. */ enum: Array<RESULT>; output: 'enum'; } : OUTPUT extends 'no-schema' ? {} : { /** * The schema of the  …"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:generateObject",
+              "code": 6385,
+              "name": "generateObject",
+              "message": "'generateObject' is deprecated.",
+              "snippet": "import { generateObject } from 'ai';",
+              "declPkg": "ai",
+              "decl": "@deprecated Use `generateText` with an `output` setting instead.\nexport declare function generateObject<SCHEMA extends FlexibleSchema$1<unknown> = FlexibleSchema$1<JSONValue$1>, OUTPUT extends 'object' | 'array' | 'enum' | 'no-schema' = InferSchema$1<SCHEMA> extends string ? 'enum' : 'object', RESULT = OUTPUT extends 'array' ? Array<InferSchema$1<SCHEMA>> : InferSchema$1<SCHEMA>>(options: Omit<LanguageModelCallOptions, 'stopSequences'> & Omit<RequestOptions, 'timeout'> & Prompt & (OUTPUT extends 'enum' ? { /** * The enum values that the model should use. */ enum: Array<RESULT>; output: 'enum'; } : OUTPUT extends 'no-schema' ? {} : { /** * The schema of the  …"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-text",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-text",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-text",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "history",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:response",
+              "code": 6385,
+              "name": "response",
+              "message": "'response' is deprecated.",
+              "snippet": "history.push(...messages, ...result.response.messages);",
+              "declPkg": "ai",
+              "decl": "@deprecated Use `finalStep.response` instead.\nreadonly response: LanguageModelResponseMetadata;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "history",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:response",
+              "code": 6385,
+              "name": "response",
+              "message": "'response' is deprecated.",
+              "snippet": "const { text, response } = await generateText({",
+              "declPkg": "ai",
+              "decl": "interface GenerateTextResult<TOOLS extends ToolSet$1, RUNTIME_CONTEXT extends Context, OUTPUT extends Output> { /** * The content that was generated in all steps. */ readonly content: Array<ContentPart<TOOLS>>; /** * The concatenation of all text parts generated in the final step. * It is an empty string if the final step contains no text parts. * Inspect `finalStep.content` to distinguish that case. */ readonly text: string; /** * The full reasoning that the model has generated in the last step. * * @deprecated Use `finalStep.reasoning` instead. */ readonly reasoning: Array<ReasoningOutput |  …"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "history",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:response",
+              "code": 6385,
+              "name": "response",
+              "message": "'response' is deprecated.",
+              "snippet": "history.push(userTurn, ...result.response.messages);",
+              "declPkg": "ai",
+              "decl": "@deprecated Use `finalStep.response` instead.\nreadonly response: LanguageModelResponseMetadata;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-object",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:streamObject",
+              "code": 6385,
+              "name": "streamObject",
+              "message": "'streamObject' is deprecated.",
+              "snippet": "import { streamObject } from 'ai';",
+              "declPkg": "ai",
+              "decl": "@deprecated Use `streamText` with an `output` setting instead.\nexport declare function streamObject<SCHEMA extends FlexibleSchema$1<unknown> = FlexibleSchema$1<JSONValue$1>, OUTPUT extends 'object' | 'array' | 'enum' | 'no-schema' = InferSchema$1<SCHEMA> extends string ? 'enum' : 'object', RESULT = OUTPUT extends 'array' ? Array<InferSchema$1<SCHEMA>> : InferSchema$1<SCHEMA>>(options: Omit<LanguageModelCallOptions, 'stopSequences'> & Omit<RequestOptions, 'timeout'> & Prompt & (OUTPUT extends 'enum' ? { /** * The enum values that the model should use. */ enum: Array<RESULT>; output: 'enum'; } : OUTPUT extends 'no-schema' ? {} : { /** * The schema of the ob …"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-object",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-object",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:streamObject",
+              "code": 6385,
+              "name": "streamObject",
+              "message": "'streamObject' is deprecated.",
+              "snippet": "import { streamObject } from 'ai';",
+              "declPkg": "ai",
+              "decl": "@deprecated Use `streamText` with an `output` setting instead.\nexport declare function streamObject<SCHEMA extends FlexibleSchema$1<unknown> = FlexibleSchema$1<JSONValue$1>, OUTPUT extends 'object' | 'array' | 'enum' | 'no-schema' = InferSchema$1<SCHEMA> extends string ? 'enum' : 'object', RESULT = OUTPUT extends 'array' ? Array<InferSchema$1<SCHEMA>> : InferSchema$1<SCHEMA>>(options: Omit<LanguageModelCallOptions, 'stopSequences'> & Omit<RequestOptions, 'timeout'> & Prompt & (OUTPUT extends 'enum' ? { /** * The enum values that the model should use. */ enum: Array<RESULT>; output: 'enum'; } : OUTPUT extends 'no-schema' ? {} : { /** * The schema of the ob …"
+            }
+          ],
+          "unrelated": 0
+        }
+      ]
+    },
+    {
+      "run": "with-card-1",
+      "results": [
+        {
+          "task": "one-shot",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "one-shot",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "one-shot",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat-route",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat-route",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat-route",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tool-loop",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tool-loop",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tool-loop",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-text",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:totalUsage",
+              "code": 6385,
+              "name": "totalUsage",
+              "message": "'totalUsage' is deprecated.",
+              "snippet": "const totalUsage = await result.totalUsage;",
+              "declPkg": "ai",
+              "decl": "@deprecated Use `usage` instead.\nreadonly totalUsage: PromiseLike<LanguageModelUsage>;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-text",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:totalUsage",
+              "code": 6385,
+              "name": "totalUsage",
+              "message": "'totalUsage' is deprecated.",
+              "snippet": "result.totalUsage,",
+              "declPkg": "ai",
+              "decl": "@deprecated Use `usage` instead.\nreadonly totalUsage: PromiseLike<LanguageModelUsage>;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-text",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:totalUsage",
+              "code": 6385,
+              "name": "totalUsage",
+              "message": "'totalUsage' is deprecated.",
+              "snippet": "result.totalUsage,",
+              "declPkg": "ai",
+              "decl": "@deprecated Use `usage` instead.\nreadonly totalUsage: PromiseLike<LanguageModelUsage>;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "history",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "history",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "history",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-object",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-object",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-object",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    },
+    {
+      "run": "with-card-2",
+      "results": [
+        {
+          "task": "one-shot",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "one-shot",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "one-shot",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat-route",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat-route",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat-route",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tool-loop",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tool-loop",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tool-loop",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-text",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-text",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-text",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "history",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "history",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "history",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-object",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-object",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream-object",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}

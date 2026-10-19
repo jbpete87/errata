@@ -1,0 +1,6 @@
+{
+  "name": "ai",
+  "extras": ["@ai-sdk/openai", "zod"],
+  "family": ["@ai-sdk/"],
+  "context": "Use the OpenAI provider from @ai-sdk/openai for models."
+}

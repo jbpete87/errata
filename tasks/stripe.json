@@ -1,0 +1,34 @@
+[
+  {
+    "id": "checkout",
+    "goal": "Create a hosted checkout page for a monthly subscription to a given price for an existing customer, allowing promo codes, and return the URL to redirect to."
+  },
+  {
+    "id": "webhook",
+    "goal": "Write a function that takes a raw request body and signature header, verifies the event is genuine, and handles three cases: a completed checkout, an updated subscription (read its status and when the current billing period ends), and a failed invoice payment (read the customer and amount due)."
+  },
+  {
+    "id": "customers",
+    "goal": "Find a customer by email or create one if none exists, attaching an internal user id as metadata, and return the customer id."
+  },
+  {
+    "id": "one-time",
+    "goal": "Start a one-time card payment of $19.99 USD that lets the dashboard decide which payment methods to offer, and return what the browser needs to confirm it."
+  },
+  {
+    "id": "cancel",
+    "goal": "Set a subscription to cancel at the end of the current period, then return the date access ends and the id of the price the customer is on."
+  },
+  {
+    "id": "invoices",
+    "goal": "Collect the ids and totals of every paid invoice for a customer, however many pages there are."
+  },
+  {
+    "id": "portal-refund",
+    "goal": "Create a self-service billing portal link for a customer, and separately refund a payment in full, returning a friendly message if the card network declines or the API reports an error."
+  },
+  {
+    "id": "usage",
+    "goal": "Report 250 units of metered usage for a customer against a usage meter named api_requests, then create a subscription for that customer on a metered price."
+  }
+]

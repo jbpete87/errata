@@ -1,0 +1,34 @@
+[
+  {
+    "id": "config",
+    "goal": "Write the project config: site URL, server-rendered output deployed with the Node adapter in standalone mode, React components enabled, and a sitemap generated."
+  },
+  {
+    "id": "config-env-i18n",
+    "goal": "Write the project config with English and Spanish locales (English default, no prefix for the default), and a typed environment variable schema with a public client-side API URL and a secret server-side API key."
+  },
+  {
+    "id": "endpoint",
+    "goal": "Write an API route that returns a JSON list on GET and on POST reads a JSON body, sets an http-only session cookie, and responds 201; reject bad input with a 400."
+  },
+  {
+    "id": "middleware",
+    "goal": "Write request middleware made of two steps run in order: one that redirects visitors without a session cookie away from /dashboard, and one that adds a response header with the request duration and exposes the user to pages."
+  },
+  {
+    "id": "content",
+    "goal": "Write the content collections config: a blog collection loaded from Markdown files in src/content/blog with a schema (title, publish date, optional cover image, draft flag) and an authors collection loaded from a single JSON file."
+  },
+  {
+    "id": "loader",
+    "goal": "Write a custom content loader that fetches products from a remote JSON API at build time, validates each entry, and stores them so pages can query the collection."
+  },
+  {
+    "id": "integration",
+    "goal": "Write a custom integration that injects a /health route, adds a small script to every page, and logs the output directory when the build finishes."
+  },
+  {
+    "id": "actions",
+    "goal": "Define a server action that accepts a newsletter signup form (email, validated), returns a typed result, and throws a typed error when the email is already subscribed."
+  }
+]

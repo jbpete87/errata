@@ -1,0 +1,34 @@
+[
+  {
+    "id": "signup",
+    "goal": "Write a validation schema for a signup form: email, website URL (optional), a UUID invite code, a password of at least 10 characters, and a confirmation field that must match the password, each with a custom error message. Export the schema and its inferred type."
+  },
+  {
+    "id": "field-errors",
+    "goal": "Write a function that validates unknown input against a nested schema (user with name and address with city and zip) without throwing, and on failure returns an object mapping each field path to its error messages for display in a form."
+  },
+  {
+    "id": "enums",
+    "goal": "Write schemas for a string status that must be one of three literals, and for a value from an existing TypeScript enum Role { Admin, Member }. Export a function that lists the allowed status values at runtime."
+  },
+  {
+    "id": "union-transform",
+    "goal": "Write a schema for a payment event that is either a card payment (last four digits) or a bank transfer (IBAN), told apart by a type field, with an amount given in cents that is converted to dollars on parse and a currency that defaults to USD."
+  },
+  {
+    "id": "object-ops",
+    "goal": "Given a base user schema, derive: one that rejects unknown keys, one that keeps unknown keys, one combined with a second address schema, one with every field optional, and one with only the id and email fields."
+  },
+  {
+    "id": "messages",
+    "goal": "Write a schema where a required name field has one message when it is missing and another when it is not a string, an age field with messages for being below 18 and for not being a whole number, and set an app-wide default message for any other invalid value."
+  },
+  {
+    "id": "coerce-formats",
+    "goal": "Write a schema for URL query parameters: page number and page size arriving as strings but used as numbers, a since date arriving as an ISO 8601 date-time string, a client IP address (v4 or v6), and a comma-separated tag list turned into an array."
+  },
+  {
+    "id": "advanced",
+    "goal": "Write a branded UserId type backed by a validated string, a recursive category tree schema (name plus child categories), a schema for a map from locale codes to translated strings, and export the tree schema as JSON Schema."
+  }
+]

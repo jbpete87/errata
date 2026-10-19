@@ -1,0 +1,6 @@
+{
+  "name": "vitest",
+  "extras": ["@vitest/browser-playwright", "playwright"],
+  "family": ["@vitest/"],
+  "types": ["vite/client"]
+}

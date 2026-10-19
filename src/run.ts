@@ -1,0 +1,107 @@
+import { writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { check } from "./check.ts";
+import { tally, writeCard } from "./card.ts";
+import { probe } from "./probe.ts";
+import type { CardLine, PackageConfig, RunSummary, SampleResult, Task } from "./types.ts";
+import { ROOT, dir, pct, readJson, safe } from "./util.ts";
+import { ensureWorkspace } from "./workspace.ts";
+
+export interface RunOptions {
+  version: string;
+  samples: number;
+  rounds: number;
+  model?: string;
+  concurrency: number;
+}
+
+export function summarize(label: string, results: SampleResult[]): RunSummary {
+  const valid = results.filter((r) => r.valid);
+  const errs = (r: SampleResult) => r.findings.filter((f) => f.kind === "error").length;
+  return {
+    label,
+    samples: results.length,
+    valid: valid.length,
+    passing: valid.filter((r) => errs(r) === 0).length,
+    clean: valid.filter((r) => r.findings.length === 0).length,
+    errors: valid.reduce((n, r) => n + errs(r), 0),
+    deprecations: valid.reduce((n, r) => n + r.findings.length - errs(r), 0),
+  };
+}
+
+export const loadPackage = (name: string) => readJson<PackageConfig>(join(ROOT, "packages", `${safe(name)}.json`));
+export const loadTasks = (name: string) => readJson<Task[]>(join(ROOT, "tasks", `${safe(name)}.json`));
+
+/**
+ * baseline probe -> card -> re-probe with the card. Mistakes that only surface once
+ * earlier ones are fixed get their own lines and another round.
+ */
+export async function run(pkg: string, opts: RunOptions) {
+  const cfg = loadPackage(pkg);
+  const tasks = loadTasks(pkg);
+  const ws = ensureWorkspace(cfg, opts.version);
+  console.error(`${cfg.name}@${ws.version}: ${tasks.length} tasks x ${opts.samples} samples`);
+
+  const base = await probe(ws.dir, cfg, tasks, { label: "baseline", card: [], ...opts });
+  const runs: SampleResult[][] = [check(ws.dir, cfg, base.samples)];
+  const summaries = [summarize("baseline", runs[0])];
+  const lines: CardLine[] = [];
+
+  for (let round = 1; round <= opts.rounds; round++) {
+    const latest = tally(runs[runs.length - 1]);
+    const covered = new Set(lines.flatMap((l) => l.keys));
+    const fresh = [...latest.values()].filter((e) => !covered.has(e.finding.key));
+    const added = await writeCard(cfg, ws.version, fresh.map((e) => e.finding), opts.model);
+    for (const l of added) {
+      lines.push({ ...l, foundIn: runs.length - 1, before: l.keys.reduce((n, k) => n + (latest.get(k)?.count ?? 0), 0), after: null });
+    }
+    if (!added.length) break;
+
+    // Lines already shown not to help are left out of the next attempt.
+    const active = lines.filter((l) => l.after === null || l.after < l.before);
+    const label = `with-card-${round}`;
+    const again = await probe(ws.dir, cfg, tasks, { label, card: active.map((l) => l.text), ...opts });
+    const results = check(ws.dir, cfg, again.samples);
+    const counts = tally(results);
+    for (const l of active) l.after = l.keys.reduce((n, k) => n + (counts.get(k)?.count ?? 0), 0);
+    runs.push(results);
+    summaries.push(summarize(label, results));
+  }
+
+  const verified = lines.filter((l) => l.after !== null && l.after < l.before);
+  const final = tally(runs[runs.length - 1]);
+  const coveredKeys = new Set(lines.flatMap((l) => l.keys));
+  const entry = {
+    package: cfg.name,
+    version: ws.version,
+    model: base.model,
+    measured: new Date().toISOString().slice(0, 10),
+    check: "typecheck + @deprecated (no execution)",
+    tasks: tasks.length,
+    samplesPerTask: opts.samples,
+    runs: summaries,
+    card: verified.map((l) => l.text),
+    lines,
+    remaining: [...final.values()].filter((e) => !coveredKeys.has(e.finding.key)).map((e) => ({ ...e.finding, count: e.count })),
+    samples: runs.map((r, i) => ({ run: summaries[i].label, results: r.map(({ file, ...rest }) => rest) })),
+  };
+
+  const out = dir(ROOT, "registry", safe(base.model), safe(cfg.name));
+  writeFileSync(join(out, `${ws.version}.json`), JSON.stringify(entry, null, 2) + "\n");
+  if (verified.length) {
+    writeFileSync(join(out, `${ws.version}.md`), `## ${cfg.name}@${ws.version}\n${verified.map((l) => `- ${l.text}`).join("\n")}\n`);
+  }
+  report(entry.model, cfg.name, ws.version, summaries, lines);
+  console.log(`\nregistry/${safe(base.model)}/${safe(cfg.name)}/${ws.version}.json`);
+}
+
+export function report(model: string, pkg: string, version: string, summaries: RunSummary[], lines: CardLine[]) {
+  console.log(`\n${pkg}@${version} — ${model}`);
+  for (const s of summaries) {
+    console.log(`  ${s.label.padEnd(12)} no errors ${pct(s.passing, s.valid).padStart(4)}  no errors or deprecations ${pct(s.clean, s.valid).padStart(4)}  (${s.errors} errors, ${s.deprecations} deprecations, ${s.valid}/${s.samples} valid)`);
+  }
+  for (const l of lines) {
+    const status = l.after === null ? "untested" : l.after < l.before ? "verified" : "no effect";
+    console.log(`  [${status}] ${l.before} -> ${l.after ?? "?"}  ${l.text}`);
+  }
+}

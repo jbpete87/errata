@@ -1,0 +1,10 @@
+[
+  { "id": "config-basic", "goal": "Write the test runner config file for a Node library: global test APIs, a setup file, a 10 second per-test timeout, V8 coverage with text and HTML reports and an 80% line threshold." },
+  { "id": "config-isolation", "goal": "Write a test runner config that runs tests in child processes instead of threads, forces every test file to run one at a time in a single worker, and retries failed tests twice on CI." },
+  { "id": "config-browser", "goal": "Write a test runner config with two named groups of tests: unit tests that run in Node, and component tests that run in a real headless Chromium browser driven by Playwright." },
+  { "id": "mock-module", "goal": "Write a test file that replaces one function of node:fs with a fake while keeping the rest of the real module, and asserts on how the fake was called." },
+  { "id": "timers", "goal": "Write a test file for a debounce function: control time manually, advance it, pin the current date, and assert the callback fired exactly once." },
+  { "id": "spies", "goal": "Write a test file that spies on a method of an object, makes it resolve a canned value, asserts it was called once with given arguments, stubs an environment variable and a global, and cleans all of that up after each test." },
+  { "id": "async-assert", "goal": "Write a test file that waits for an eventually-true condition by retrying an assertion, checks a function throws an error matching a pattern, checks a promise rejects, and uses an inline snapshot." },
+  { "id": "table-types", "goal": "Write a test file with a table-driven test over several input rows, a test that is skipped when running on CI, a per-test timeout and retry count, and a compile-time assertion about a function's return type." }
+]
