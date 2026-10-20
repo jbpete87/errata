@@ -1,0 +1,232 @@
+{
+  "package": "zustand",
+  "version": "5.0.9",
+  "model": "claude-opus-5-5",
+  "measured": "2026-10-20",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 23,
+      "clean": 23,
+      "errors": 1,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    }
+  ],
+  "card": [],
+  "lines": [],
+  "minCount": 2,
+  "rare": [
+    {
+      "key": "error:2345:selector@useStore",
+      "count": 1,
+      "message": "Argument of type '((state: CounterState) => T) | ((s: CounterState) => CounterState)' is not assignable to parameter of type '(state: CounterState) => T'. Type '(s: CounterState) => CounterState' is not assignable to type '(state: CounterState) => T'. Type 'CounterState' is not assignable to type 'T'. 'T' could be instantiated with an arbitrary type which could be unrelated to 'CounterState'.",
+      "snippet": "return useStore(store, selector ?? ((s: CounterState) => s));"
+    }
+  ],
+  "remaining": [
+    {
+      "kind": "error",
+      "key": "error:2345:selector@useStore",
+      "code": 2345,
+      "name": "selector",
+      "message": "Argument of type '((state: CounterState) => T) | ((s: CounterState) => CounterState)' is not assignable to parameter of type '(state: CounterState) => T'. Type '(s: CounterState) => CounterState' is not assignable to type '(state: CounterState) => T'. Type 'CounterState' is not assignable to type 'T'. 'T' could be instantiated with an arbitrary type which could be unrelated to 'CounterState'.",
+      "snippet": "return useStore(store, selector ?? ((s: CounterState) => s));",
+      "declPkg": "zustand",
+      "decl": "export declare function useStore<S extends ReadonlyStoreApi<unknown>, U>(api: S, selector: (state: ExtractState<S>) => U): U;",
+      "count": 1
+    }
+  ],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "counter",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "counter",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "counter",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "persist",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "persist",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "persist",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "slices",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "slices",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "slices",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "selectors",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "selectors",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "selectors",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "immer",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "immer",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "immer",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "devtools",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "devtools",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "devtools",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "vanilla",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "vanilla",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "vanilla",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "context",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "context",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2345:selector@useStore",
+              "code": 2345,
+              "name": "selector",
+              "message": "Argument of type '((state: CounterState) => T) | ((s: CounterState) => CounterState)' is not assignable to parameter of type '(state: CounterState) => T'. Type '(s: CounterState) => CounterState' is not assignable to type '(state: CounterState) => T'. Type 'CounterState' is not assignable to type 'T'. 'T' could be instantiated with an arbitrary type which could be unrelated to 'CounterState'.",
+              "snippet": "return useStore(store, selector ?? ((s: CounterState) => s));",
+              "declPkg": "zustand",
+              "decl": "export declare function useStore<S extends ReadonlyStoreApi<unknown>, U>(api: S, selector: (state: ExtractState<S>) => U): U;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "context",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}

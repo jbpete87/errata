@@ -1,0 +1,564 @@
+{
+  "package": "astro",
+  "version": "7.4.1",
+  "model": "claude-opus-5-5",
+  "measured": "2026-10-20",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 23,
+      "clean": 15,
+      "errors": 1,
+      "deprecations": 11,
+      "warnings": 0,
+      "buildFailures": 0
+    },
+    {
+      "label": "with-card-1",
+      "samples": 24,
+      "valid": 24,
+      "passing": 23,
+      "clean": 23,
+      "errors": 1,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    }
+  ],
+  "card": [
+    "Zod (astro/zod) string format methods are deprecated: replace z.string().email() with z.email() and z.string().url() with z.url()."
+  ],
+  "lines": [
+    {
+      "text": "Zod (astro/zod) string format methods are deprecated: replace z.string().email() with z.email() and z.string().url() with z.url().",
+      "keys": [
+        "deprecated:email",
+        "deprecated:url"
+      ],
+      "foundIn": 0,
+      "before": 10,
+      "after": 0
+    }
+  ],
+  "minCount": 2,
+  "rare": [
+    {
+      "key": "deprecated:z",
+      "count": 1,
+      "message": "'z' is deprecated.",
+      "snippet": "import { defineCollection, reference, z } from 'astro:content';"
+    },
+    {
+      "key": "error:2769:required_error@z .string",
+      "count": 1,
+      "message": "No overload matches this call. Overload 1 of 2, '(params?: string | $ZodStringParams | undefined): ZodString', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type '$ZodStringParams'. Overload 2 of 2, '(params?: string | $ZodStringParams | undefined): $ZodType<string, string, $ZodTypeInternals<string, string>>', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type …",
+      "snippet": ".string({ required_error: 'Email is required.' })"
+    }
+  ],
+  "remaining": [
+    {
+      "kind": "error",
+      "key": "error:2740:data@parseData",
+      "code": 2740,
+      "name": "data",
+      "message": "Type 'Record<string, unknown>' is missing the following properties from type '{ id: string; name: string; description: string; price: number; currency: string; tags: string[]; inStock: boolean; image?: string | undefined; url?: string | undefined; category?: string | undefined; updatedAt?: Date | undefined; }': id, name, description, price, and 3 more.",
+      "snippet": "data = await parseData<Product>({ id, data: raw as Record<string, unknown> });",
+      "declPkg": "astro",
+      "decl": "export interface ParseDataOptions<TData extends Record<string, unknown>> { /** The ID of the entry. Unique per collection */ id: string; /** The raw, unvalidated data of the entry */ data: TData; /** An optional file path, where the entry represents a local file. */ filePath?: string; }",
+      "count": 1
+    }
+  ],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "config",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-env-i18n",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-env-i18n",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-env-i18n",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "endpoint",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "endpoint",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "endpoint",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "middleware",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "middleware",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "middleware",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "content",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:z",
+              "code": 6385,
+              "name": "z",
+              "message": "'z' is deprecated.",
+              "snippet": "import { defineCollection, reference, z } from 'astro:content';",
+              "declPkg": "astro",
+              "decl": "@deprecated `import { z } from 'astro:content'` is deprecated and will be removed\nin Astro 8. Use `import { z } from 'astro/zod'` instead.\nz = zod.z"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "email: z.string().email().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "url: z.string().url().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "content",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "url: z.string().url().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "content",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "url: z.string().url().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "loader",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "image: z.string().url().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "loader",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { pattern?: RegExp | undefined; abort?: boolean | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "image: z.string().url().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "loader",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "image: z.string().url().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "integration",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "integration",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "integration",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "actions",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2769:required_error@z .string",
+              "code": 2769,
+              "name": "required_error",
+              "message": "No overload matches this call. Overload 1 of 2, '(params?: string | $ZodStringParams | undefined): ZodString', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type '$ZodStringParams'. Overload 2 of 2, '(params?: string | $ZodStringParams | undefined): $ZodType<string, string, $ZodTypeInternals<string, string>>', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type …",
+              "snippet": ".string({ required_error: 'Email is required.' })",
+              "declPkg": "zod",
+              "decl": "export type $ZodStringParams = TypeParams<schemas.$ZodString<string>, \"coerce\"> & { checks?: readonly checks.$ZodCheck<string>[]; };"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".email('Please enter a valid email address.'),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "actions",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".email(\"Please enter a valid email address.\"),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "actions",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".email(\"Please enter a valid email address.\"),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            }
+          ],
+          "unrelated": 0
+        }
+      ]
+    },
+    {
+      "run": "with-card-1",
+      "results": [
+        {
+          "task": "config",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-env-i18n",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-env-i18n",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-env-i18n",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "endpoint",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "endpoint",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "endpoint",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "middleware",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "middleware",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "middleware",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "content",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "content",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "content",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "loader",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2740:data@parseData",
+              "code": 2740,
+              "name": "data",
+              "message": "Type 'Record<string, unknown>' is missing the following properties from type '{ id: string; name: string; description: string; price: number; currency: string; tags: string[]; inStock: boolean; image?: string | undefined; url?: string | undefined; category?: string | undefined; updatedAt?: Date | undefined; }': id, name, description, price, and 3 more.",
+              "snippet": "data = await parseData<Product>({ id, data: raw as Record<string, unknown> });",
+              "declPkg": "astro",
+              "decl": "export interface ParseDataOptions<TData extends Record<string, unknown>> { /** The ID of the entry. Unique per collection */ id: string; /** The raw, unvalidated data of the entry */ data: TData; /** An optional file path, where the entry represents a local file. */ filePath?: string; }"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "loader",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "loader",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "integration",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "integration",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "integration",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "actions",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "actions",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "actions",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}

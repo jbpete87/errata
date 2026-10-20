@@ -1,0 +1,232 @@
+{
+  "package": "@supabase/supabase-js",
+  "version": "2.90.1",
+  "model": "claude-opus-5-5",
+  "measured": "2026-10-20",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 23,
+      "errors": 0,
+      "deprecations": 1,
+      "warnings": 0,
+      "buildFailures": 0
+    }
+  ],
+  "card": [],
+  "lines": [],
+  "minCount": 2,
+  "rare": [
+    {
+      "key": "deprecated:returns",
+      "count": 1,
+      "message": "'(): PostgrestTransformBuilder<any, any, any, { Error: \"Type mismatch: Cannot cast single object to array type. Remove Array wrapper from return type or make sure you are not using .single() up in the calling chain\"; } | OrderSummary[] | null, \"get_order_summaries\", null, \"RPC\">' is deprecated.",
+      "snippet": ".returns<OrderSummary[]>();"
+    }
+  ],
+  "remaining": [
+    {
+      "kind": "deprecated",
+      "key": "deprecated:returns",
+      "code": 6385,
+      "name": "returns",
+      "message": "'(): PostgrestTransformBuilder<any, any, any, { Error: \"Type mismatch: Cannot cast single object to array type. Remove Array wrapper from return type or make sure you are not using .single() up in the calling chain\"; } | OrderSummary[] | null, \"get_order_summaries\", null, \"RPC\">' is deprecated.",
+      "snippet": ".returns<OrderSummary[]>();",
+      "declPkg": "@supabase/postgrest-js",
+      "decl": "@deprecated Use overrideTypes<yourType, { merge: false }>() method at the end of your call chain instead\nreturns<NewResult>(): PostgrestTransformBuilder<ClientOptions, Schema, Row, CheckMatchingArrayTypes<Result$1, NewResult>, RelationName, Relationships, Method>;",
+      "count": 1
+    }
+  ],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "client-query",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "client-query",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "client-query",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "insert-upsert",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "insert-upsert",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "insert-upsert",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "auth",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "auth",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "auth",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "oauth-otp",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "oauth-otp",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "oauth-otp",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "auth-listen",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "auth-listen",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "auth-listen",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "storage",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "storage",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "storage",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "realtime",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "realtime",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "realtime",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "rpc-edge",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:returns",
+              "code": 6385,
+              "name": "returns",
+              "message": "'(): PostgrestTransformBuilder<any, any, any, { Error: \"Type mismatch: Cannot cast single object to array type. Remove Array wrapper from return type or make sure you are not using .single() up in the calling chain\"; } | OrderSummary[] | null, \"get_order_summaries\", null, \"RPC\">' is deprecated.",
+              "snippet": ".returns<OrderSummary[]>();",
+              "declPkg": "@supabase/postgrest-js",
+              "decl": "@deprecated Use overrideTypes<yourType, { merge: false }>() method at the end of your call chain instead\nreturns<NewResult>(): PostgrestTransformBuilder<ClientOptions, Schema, Row, CheckMatchingArrayTypes<Result$1, NewResult>, RelationName, Relationships, Method>;"
+            }
+          ],
+          "unrelated": 1
+        },
+        {
+          "task": "rpc-edge",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "rpc-edge",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}

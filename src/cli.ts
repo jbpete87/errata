@@ -15,6 +15,7 @@ const USAGE = `errata <command>
       --version <v>        package version or dist-tag (default: latest)
       --samples <n>        answers per task (default: 1)
       --rounds <n>         card/verify rounds (default: 2)
+      --min-count <n>      samples a mistake must appear in to get a card line (default: 2)
       --model <id>         passed to claude --model (default: the CLI's default)
       --concurrency <n>    parallel model calls (default: 3)
 
@@ -34,6 +35,7 @@ const { positionals, values } = parseArgs({
     version: { type: "string", default: "latest" },
     samples: { type: "string", default: "1" },
     rounds: { type: "string", default: "2" },
+    "min-count": { type: "string", default: "2" },
     model: { type: "string" },
     concurrency: { type: "string", default: "3" },
     file: { type: "string" },
@@ -44,7 +46,7 @@ const [command, pkg, target] = positionals;
 
 try {
   if (command === "run" && pkg) {
-    await run(pkg, { version: values.version, samples: Number(values.samples), rounds: Number(values.rounds), model: values.model, concurrency: Number(values.concurrency) });
+    await run(pkg, { version: values.version, samples: Number(values.samples), rounds: Number(values.rounds), minCount: Number(values["min-count"]), model: values.model, concurrency: Number(values.concurrency) });
   } else if (command === "sync") {
     sync(resolve(pkg ?? "."), { model: values.model, file: values.file, dryRun: values["dry-run"] });
   } else if (command === "check" && pkg && target) {

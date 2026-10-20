@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs";
+import { rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { build } from "./build.ts";
 import { check, type SampleFile } from "./check.ts";
@@ -12,6 +12,8 @@ export interface RunOptions {
   version: string;
   samples: number;
   rounds: number;
+  /** a mistake must appear in at least this many samples of a run to get a card line */
+  minCount: number;
   model?: string;
   concurrency: number;
 }
@@ -60,7 +62,8 @@ export async function run(pkg: string, opts: RunOptions) {
   for (let round = 1; round <= opts.rounds; round++) {
     const latest = tally(runs[runs.length - 1]);
     const covered = new Set(lines.flatMap((l) => l.keys));
-    const fresh = [...latest.values()].filter((e) => !covered.has(e.finding.key));
+    // One sighting may be chance, and every line costs context in every session: require repeats.
+    const fresh = [...latest.values()].filter((e) => !covered.has(e.finding.key) && e.count >= opts.minCount);
     const added = await writeCard(cfg, ws.version, fresh.map((e) => e.finding), opts.model);
     for (const l of added) {
       lines.push({ ...l, foundIn: runs.length - 1, before: l.keys.reduce((n, k) => n + (latest.get(k)?.count ?? 0), 0), after: null });
@@ -92,16 +95,20 @@ export async function run(pkg: string, opts: RunOptions) {
     runs: summaries,
     card: verified.map((l) => l.text),
     lines,
+    minCount: opts.minCount,
+    // Seen at baseline, but too rarely to earn a line.
+    rare: [...tally(runs[0]).values()].filter((e) => e.count < opts.minCount).map((e) => ({ key: e.finding.key, count: e.count, message: e.finding.message, snippet: e.finding.snippet })),
     remaining: [...final.values()].filter((e) => !coveredKeys.has(e.finding.key)).map((e) => ({ ...e.finding, count: e.count })),
     samples: runs.map((r, i) => ({ run: summaries[i].label, results: r.map(({ file, ...rest }) => rest) })),
   };
 
   const out = dir(ROOT, "registry", safe(base.model), safe(cfg.name));
   writeFileSync(join(out, `${ws.version}.json`), JSON.stringify(entry, null, 2) + "\n");
-  if (verified.length) {
-    writeFileSync(join(out, `${ws.version}.md`), `## ${cfg.name}@${ws.version}\n${verified.map((l) => `- ${l.text}`).join("\n")}\n`);
-  }
+  const card = join(out, `${ws.version}.md`);
+  if (verified.length) writeFileSync(card, `## ${cfg.name}@${ws.version}\n${verified.map((l) => `- ${l.text}`).join("\n")}\n`);
+  else rmSync(card, { force: true });
   report(entry.model, cfg.name, ws.version, summaries, lines);
+  for (const r of entry.rare) console.log(`  [rare, no line] x${r.count}  ${r.message.slice(0, 140)}`);
   console.log(`\nregistry/${safe(base.model)}/${safe(cfg.name)}/${ws.version}.json`);
 }
 

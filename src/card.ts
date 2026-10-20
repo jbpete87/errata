@@ -30,6 +30,7 @@ Write the corrections an agent needs so it does not repeat these mistakes. Rules
 - One line per root cause. Merge entries that share a cause and list every key the line covers.
 - At most 30 words per line. Name the wrong usage and the right one, with exact identifiers.
 - State only what the evidence shows. If the evidence does not reveal the replacement, say what no longer works and stop.
+- Write each line so it applies in any project: mention only the package's own identifiers, never names that come from the example code.
 
 Return JSON: [{"text": "...", "keys": ["..."]}]`;
   const res = await complete(SYSTEM, prompt, { model });

@@ -1,0 +1,420 @@
+{
+  "package": "vitest",
+  "version": "5.0.5",
+  "model": "claude-opus-5-5",
+  "measured": "2026-10-20",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 22,
+      "errors": 0,
+      "deprecations": 2,
+      "warnings": 0,
+      "buildFailures": 0
+    },
+    {
+      "label": "with-card-1",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 24,
+      "errors": 0,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    }
+  ],
+  "card": [
+    "In vitest@5.0.5, expect(...).toThrowError(expected) is deprecated; use expect(...).toThrow(expected) instead, with the same optional expected argument."
+  ],
+  "lines": [
+    {
+      "text": "In vitest@5.0.5, expect(...).toThrowError(expected) is deprecated; use expect(...).toThrow(expected) instead, with the same optional expected argument.",
+      "keys": [
+        "deprecated:toThrowError"
+      ],
+      "foundIn": 0,
+      "before": 2,
+      "after": 0
+    }
+  ],
+  "minCount": 2,
+  "rare": [],
+  "remaining": [],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "config-basic",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-basic",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-basic",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "mock-module",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "mock-module",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "mock-module",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "timers",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "timers",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "timers",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "spies",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "spies",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "spies",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:toThrowError",
+              "code": 6385,
+              "name": "toThrowError",
+              "message": "'toThrowError' is deprecated.",
+              "snippet": "expect(() => parseConfig('{\"port\": 8080}')).toThrowError(/missing \"name\"/)",
+              "declPkg": "vitest",
+              "decl": "@deprecated Use `toThrow` instead\ntoThrowError: (expected?: any) => R;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:toThrowError",
+              "code": 6385,
+              "name": "toThrowError",
+              "message": "'toThrowError' is deprecated.",
+              "snippet": "expect(() => parseAge('-5')).toThrowError(/^Invalid age: \"-5\"$/)",
+              "declPkg": "vitest",
+              "decl": "@deprecated Use `toThrow` instead\ntoThrowError: (expected?: any) => R;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    },
+    {
+      "run": "with-card-1",
+      "results": [
+        {
+          "task": "config-basic",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-basic",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-basic",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "mock-module",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "mock-module",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "mock-module",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "timers",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 3
+        },
+        {
+          "task": "timers",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "timers",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "spies",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "spies",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "spies",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}

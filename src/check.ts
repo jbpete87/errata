@@ -73,6 +73,8 @@ function checkOne(wsDir: string, cfg: PackageConfig, samples: SampleFile[], regi
   const options = { ...OPTIONS, typeRoots: [join(wsDir, "node_modules", "@types")], ...(root ? { paths: { "@/*": [join(root, "*")] } } : {}) };
   // Ambient declaration files (e.g. "astro/client") are loaded as extra roots so virtual modules resolve.
   const ambient = (cfg.types ?? []).map((t) => join(wsDir, "node_modules", `${t}.d.ts`));
+  // A missing ambient file makes correct code fail to compile, which would read as a model mistake.
+  for (const f of ambient) if (!ts.sys.fileExists(f)) throw new Error(`types entry not found: ${f} (add its package to "extras")`);
   const files = [...samples.flatMap((s) => (s.files ?? [s.file]).filter(isTs)), ...ambient];
   const host: ts.LanguageServiceHost = {
     getScriptFileNames: () => files,

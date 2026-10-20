@@ -1,0 +1,232 @@
+{
+  "package": "@upstash/redis",
+  "version": "1.36.2",
+  "model": "claude-opus-5-5",
+  "measured": "2026-10-20",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 23,
+      "clean": 23,
+      "errors": 1,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    }
+  ],
+  "card": [],
+  "lines": [],
+  "minCount": 2,
+  "rare": [
+    {
+      "key": "error:2345:doc@redis.json.set",
+      "count": 1,
+      "message": "Argument of type 'UserProfile' is not assignable to parameter of type 'string | number | boolean | Record<string, unknown> | (string | number | boolean | Record<string, unknown>)[]'. Type 'UserProfile' is not assignable to type 'Record<string, unknown>'. Index signature for type 'string' is missing in type 'UserProfile'.",
+      "snippet": "const result = await redis.json.set(key, \"$\", doc);"
+    }
+  ],
+  "remaining": [
+    {
+      "kind": "error",
+      "key": "error:2345:doc@redis.json.set",
+      "code": 2345,
+      "name": "doc",
+      "message": "Argument of type 'UserProfile' is not assignable to parameter of type 'string | number | boolean | Record<string, unknown> | (string | number | boolean | Record<string, unknown>)[]'. Type 'UserProfile' is not assignable to type 'Record<string, unknown>'. Index signature for type 'string' is missing in type 'UserProfile'.",
+      "snippet": "const result = await redis.json.set(key, \"$\", doc);",
+      "declPkg": "@upstash/redis",
+      "decl": "(key: string, path: string, value: string | number | boolean | Record<string, unknown> | (string | number | boolean | Record<string, unknown>)[], opts?: { nx: true; xx?: never; } | { nx?: never; xx: true; } | undefined) => Promise<\"OK\" | null>",
+      "count": 1
+    }
+  ],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "basic",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "basic",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "basic",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "counters",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "counters",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "counters",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "hashes",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "hashes",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "hashes",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "pipeline",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "pipeline",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "pipeline",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "lists-sets",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "lists-sets",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "lists-sets",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "json",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "json",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "json",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2345:doc@redis.json.set",
+              "code": 2345,
+              "name": "doc",
+              "message": "Argument of type 'UserProfile' is not assignable to parameter of type 'string | number | boolean | Record<string, unknown> | (string | number | boolean | Record<string, unknown>)[]'. Type 'UserProfile' is not assignable to type 'Record<string, unknown>'. Index signature for type 'string' is missing in type 'UserProfile'.",
+              "snippet": "const result = await redis.json.set(key, \"$\", doc);",
+              "declPkg": "@upstash/redis",
+              "decl": "(key: string, path: string, value: string | number | boolean | Record<string, unknown> | (string | number | boolean | Record<string, unknown>)[], opts?: { nx: true; xx?: never; } | { nx?: never; xx: true; } | undefined) => Promise<\"OK\" | null>"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "scan",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "scan",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "scan",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "lua-cache",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "lua-cache",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "lua-cache",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}
