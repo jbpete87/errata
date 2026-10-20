@@ -1,15 +1,19 @@
-import { writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { complete } from "./provider.ts";
 import type { SampleFile } from "./check.ts";
 import type { PackageConfig, Task } from "./types.ts";
-import { dir, fenced, pool, safe } from "./util.ts";
+import { blocks, dir, fenced, pkgName, pool, projectPath, safe } from "./util.ts";
 
 const SYSTEM =
   "You are a coding assistant working in a TypeScript project. Reply with one complete TypeScript file in a single ```ts code block and nothing else. Write the code the way you normally would; do not add commentary.";
 
+// Packages checked by their own toolchain need to know where each file goes: that is often the mistake.
+const SYSTEM_FILES =
+  "You are a coding assistant working in a TypeScript project. Reply with the complete file or files the task needs, each in its own code block whose first line is a comment naming its path from the project root, like `// file: app/page.tsx`, and nothing else. Write the code the way you normally would; do not add commentary.";
+
 export function buildPrompt(cfg: PackageConfig, task: Task, card: string[]): string {
-  const deps = [cfg.name, ...(cfg.extras ?? [])].join(", ");
+  const deps = [cfg.name, ...(cfg.extras ?? []).map(pkgName)].join(", ");
   // The card is presented the way it would reach an agent in practice: as a project notes file.
   const notes = card.length ? `Project notes (AGENTS.md):\n## ${cfg.name}\n${card.map((l) => `- ${l}`).join("\n")}\n\n` : "";
   return `${notes}Installed dependencies: ${deps}.${cfg.context ? " " + cfg.context : ""}\n\nTask: ${task.goal}`;
@@ -30,12 +34,23 @@ export async function probe(
   let model = opts.model ?? "unknown";
   let done = 0;
   const samples = await pool(jobs, opts.concurrency, async ({ task, sample }) => {
-    const res = await complete(SYSTEM, buildPrompt(cfg, task, opts.card), { model: opts.model, slot: sample });
+    const res = await complete(cfg.build ? SYSTEM_FILES : SYSTEM, buildPrompt(cfg, task, opts.card), { model: opts.model, slot: sample });
     model = res.model;
-    const file = join(out, `${safe(task.id)}.${sample}.${cfg.tsx ? "tsx" : "ts"}`);
-    writeFileSync(file, fenced(res.text));
     done++;
     if (process.stderr.isTTY) process.stderr.write(`\r  ${opts.label}: ${done}/${jobs.length}`);
+    if (cfg.build) {
+      const root = join(out, `${safe(task.id)}.${sample}`);
+      rmSync(root, { recursive: true, force: true });
+      const files = blocks(res.text).map((b, i) => {
+        const file = join(root, (b.path && projectPath(b.path)) ?? `answer${i}.${cfg.tsx ? "tsx" : "ts"}`);
+        mkdirSync(dirname(file), { recursive: true });
+        writeFileSync(file, b.code);
+        return file;
+      });
+      return { task: task.id, sample, file: root, files, root };
+    }
+    const file = join(out, `${safe(task.id)}.${sample}.${cfg.tsx ? "tsx" : "ts"}`);
+    writeFileSync(file, fenced(res.text));
     return { task: task.id, sample, file };
   });
   if (process.stderr.isTTY) process.stderr.write("\n");

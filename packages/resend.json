@@ -1,0 +1,10 @@
+{
+  "name": "resend",
+  "extras": [
+    "@react-email/components",
+    "react",
+    "@types/react"
+  ],
+  "tsx": true,
+  "context": "Write a .tsx module."
+}

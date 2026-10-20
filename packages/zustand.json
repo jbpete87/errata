@@ -1,0 +1,9 @@
+{
+  "name": "zustand",
+  "extras": [
+    "react",
+    "@types/react"
+  ],
+  "tsx": true,
+  "context": "This is a React app; write a .tsx module."
+}

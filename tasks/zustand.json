@@ -1,0 +1,34 @@
+[
+  {
+    "id": "counter",
+    "goal": "Create a typed global store for a counter with increment, decrement and reset actions, and a component that shows the count and buttons, re-rendering only when the count changes."
+  },
+  {
+    "id": "persist",
+    "goal": "Create a store for user preferences (theme and language) that is saved to localStorage and restored on reload, with a version number and a migration from an older shape."
+  },
+  {
+    "id": "slices",
+    "goal": "Build one store out of two separately defined slices (a cart slice and a user slice) where an action in one slice can read the other, fully typed."
+  },
+  {
+    "id": "selectors",
+    "goal": "Write a component that reads two fields from a store as an object without causing extra re-renders when unrelated fields change."
+  },
+  {
+    "id": "immer",
+    "goal": "Create a todo store whose actions update nested state by mutating a draft, with add, toggle and remove actions."
+  },
+  {
+    "id": "devtools",
+    "goal": "Create an async store that fetches a user profile, tracks loading and error state, and shows its actions in the browser devtools extension with action names."
+  },
+  {
+    "id": "vanilla",
+    "goal": "Create a store that can be used outside React (from plain modules), subscribe to changes of one field only, and also read it inside a React component."
+  },
+  {
+    "id": "context",
+    "goal": "Create a store per component subtree (not a global singleton), initialised from props, provided through React context, with a typed hook to read it."
+  }
+]

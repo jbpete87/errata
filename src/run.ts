@@ -1,6 +1,7 @@
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { check } from "./check.ts";
+import { build } from "./build.ts";
+import { check, type SampleFile } from "./check.ts";
 import { tally, writeCard } from "./card.ts";
 import { probe } from "./probe.ts";
 import type { CardLine, PackageConfig, RunSummary, SampleResult, Task } from "./types.ts";
@@ -18,6 +19,7 @@ export interface RunOptions {
 export function summarize(label: string, results: SampleResult[]): RunSummary {
   const valid = results.filter((r) => r.valid);
   const errs = (r: SampleResult) => r.findings.filter((f) => f.kind === "error").length;
+  const count = (r: SampleResult, kind: string) => r.findings.filter((f) => f.kind === kind).length;
   return {
     label,
     samples: results.length,
@@ -25,7 +27,9 @@ export function summarize(label: string, results: SampleResult[]): RunSummary {
     passing: valid.filter((r) => errs(r) === 0).length,
     clean: valid.filter((r) => r.findings.length === 0).length,
     errors: valid.reduce((n, r) => n + errs(r), 0),
-    deprecations: valid.reduce((n, r) => n + r.findings.length - errs(r), 0),
+    deprecations: valid.reduce((n, r) => n + count(r, "deprecated"), 0),
+    warnings: valid.reduce((n, r) => n + count(r, "build"), 0),
+    buildFailures: valid.filter((r) => r.build && !r.build.ok).length,
   };
 }
 
@@ -42,8 +46,14 @@ export async function run(pkg: string, opts: RunOptions) {
   const ws = ensureWorkspace(cfg, opts.version);
   console.error(`${cfg.name}@${ws.version}: ${tasks.length} tasks x ${opts.samples} samples`);
 
+  const evaluate = async (label: string, samples: SampleFile[]) => {
+    const results = check(ws.dir, cfg, samples);
+    if (cfg.build) await build(ws.dir, cfg, samples, results, label, opts.concurrency);
+    return results;
+  };
+
   const base = await probe(ws.dir, cfg, tasks, { label: "baseline", card: [], ...opts });
-  const runs: SampleResult[][] = [check(ws.dir, cfg, base.samples)];
+  const runs: SampleResult[][] = [await evaluate("baseline", base.samples)];
   const summaries = [summarize("baseline", runs[0])];
   const lines: CardLine[] = [];
 
@@ -61,7 +71,7 @@ export async function run(pkg: string, opts: RunOptions) {
     const active = lines.filter((l) => l.after === null || l.after < l.before);
     const label = `with-card-${round}`;
     const again = await probe(ws.dir, cfg, tasks, { label, card: active.map((l) => l.text), ...opts });
-    const results = check(ws.dir, cfg, again.samples);
+    const results = await evaluate(label, again.samples);
     const counts = tally(results);
     for (const l of active) l.after = l.keys.reduce((n, k) => n + (counts.get(k)?.count ?? 0), 0);
     runs.push(results);
@@ -76,7 +86,7 @@ export async function run(pkg: string, opts: RunOptions) {
     version: ws.version,
     model: base.model,
     measured: new Date().toISOString().slice(0, 10),
-    check: "typecheck + @deprecated (no execution)",
+    check: cfg.build ? `typecheck + @deprecated + \`${cfg.build.command.join(" ")}\` warnings` : "typecheck + @deprecated (no execution)",
     tasks: tasks.length,
     samplesPerTask: opts.samples,
     runs: summaries,
@@ -98,7 +108,7 @@ export async function run(pkg: string, opts: RunOptions) {
 export function report(model: string, pkg: string, version: string, summaries: RunSummary[], lines: CardLine[]) {
   console.log(`\n${pkg}@${version} — ${model}`);
   for (const s of summaries) {
-    console.log(`  ${s.label.padEnd(12)} no errors ${pct(s.passing, s.valid).padStart(4)}  no errors or deprecations ${pct(s.clean, s.valid).padStart(4)}  (${s.errors} errors, ${s.deprecations} deprecations, ${s.valid}/${s.samples} valid)`);
+    console.log(`  ${s.label.padEnd(12)} no errors ${pct(s.passing, s.valid).padStart(4)}  no errors or deprecations ${pct(s.clean, s.valid).padStart(4)}  (${s.errors} errors, ${s.deprecations} deprecations${s.warnings || s.buildFailures ? `, ${s.warnings} build warnings, ${s.buildFailures} failed builds` : ""}, ${s.valid}/${s.samples} valid)`);
   }
   for (const l of lines) {
     const status = l.after === null ? "untested" : l.after < l.before ? "verified" : "no effect";

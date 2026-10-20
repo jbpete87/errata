@@ -4,14 +4,42 @@
     "react",
     "react-dom",
     "@types/react",
-    "@types/react-dom"
+    "@types/react-dom",
+    "typescript@5",
+    "babel-plugin-react-compiler"
   ],
   "family": [
     "@next/"
   ],
   "tsx": true,
-  "context": "This is a Next.js App Router project; write one .tsx module.",
+  "context": "This is a Next.js App Router project.",
   "types": [
     "next/index"
-  ]
+  ],
+  "build": {
+    "command": [
+      "next",
+      "build",
+      "--experimental-build-mode",
+      "compile"
+    ],
+    "scaffold": {
+      "app/layout.tsx": "export default function RootLayout({ children }: { children: React.ReactNode }) {\n  return <html lang=\"en\"><body>{children}</body></html>;\n}\n",
+      "app/page.tsx": "export default function Page() {\n  return <p>home</p>;\n}\n",
+      "tsconfig.json": "{\n  \"compilerOptions\": {\n    \"target\": \"ES2022\",\n    \"lib\": [\n      \"dom\",\n      \"dom.iterable\",\n      \"esnext\"\n    ],\n    \"strict\": true,\n    \"noEmit\": true,\n    \"module\": \"esnext\",\n    \"moduleResolution\": \"bundler\",\n    \"jsx\": \"react-jsx\",\n    \"skipLibCheck\": true,\n    \"plugins\": [\n      {\n        \"name\": \"next\"\n      }\n    ],\n    \"paths\": {\n      \"@/*\": [\n        \"./*\"\n      ]\n    }\n  },\n  \"include\": [\n    \"**/*.ts\",\n    \"**/*.tsx\"\n  ],\n  \"exclude\": [\n    \"node_modules\"\n  ]\n}\n"
+    },
+    "warn": "^\\s*\u26a0\\s*(.+)$",
+    "ignore": [
+      "inferred your workspace root",
+      "Build ran with",
+      "No build cache found",
+      "^Module not found",
+      "Error parsing package.json"
+    ],
+    "cleanup": [
+      ".next"
+    ],
+    "timeoutMs": 180000,
+    "error": "^\\./\\S+:\\d+:\\d+$"
+  }
 }

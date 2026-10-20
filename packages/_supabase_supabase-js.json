@@ -1,0 +1,7 @@
+{
+  "name": "@supabase/supabase-js",
+  "extras": [],
+  "family": [
+    "@supabase/"
+  ]
+}

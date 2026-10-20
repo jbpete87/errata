@@ -1,12 +1,20 @@
 import ts from "typescript";
 import { join } from "node:path";
 import type { Finding, PackageConfig, SampleResult } from "./types.ts";
+import { pkgName } from "./util.ts";
 
 export interface SampleFile {
   task: string;
   sample: number;
+  /** primary file, or the sample's directory when it has several */
   file: string;
+  /** every file of a multi-file answer, relative paths resolved */
+  files?: string[];
+  /** project root of a multi-file answer */
+  root?: string;
 }
+
+const isTs = (f: string) => /\.[cm]?tsx?$/.test(f) && !f.endsWith(".d.ts");
 
 const OPTIONS: ts.CompilerOptions = {
   target: ts.ScriptTarget.ES2022,
@@ -60,10 +68,12 @@ export function check(wsDir: string, cfg: PackageConfig, samples: SampleFile[]):
 }
 
 function checkOne(wsDir: string, cfg: PackageConfig, samples: SampleFile[], registry: ts.DocumentRegistry, missing: Set<string>): SampleResult[] {
-  const options = { ...OPTIONS, typeRoots: [join(wsDir, "node_modules", "@types")] };
+  const root = samples[0]?.root;
+  // Multi-file answers use the usual `@/` alias for the project root.
+  const options = { ...OPTIONS, typeRoots: [join(wsDir, "node_modules", "@types")], ...(root ? { paths: { "@/*": [join(root, "*")] } } : {}) };
   // Ambient declaration files (e.g. "astro/client") are loaded as extra roots so virtual modules resolve.
   const ambient = (cfg.types ?? []).map((t) => join(wsDir, "node_modules", `${t}.d.ts`));
-  const files = [...samples.map((s) => s.file), ...ambient];
+  const files = [...samples.flatMap((s) => (s.files ?? [s.file]).filter(isTs)), ...ambient];
   const host: ts.LanguageServiceHost = {
     getScriptFileNames: () => files,
     getScriptVersion: () => "1",
@@ -84,7 +94,7 @@ function checkOne(wsDir: string, cfg: PackageConfig, samples: SampleFile[], regi
   const inFamily = (name: string) => name === cfg.name || (cfg.family ?? []).some((p) => name.startsWith(p));
   // Transitive dependencies count (a package's types often live in its internals); extras and @types do not.
   const relevant = (pkg: string | null): pkg is string =>
-    !!pkg && pkg !== "typescript" && !pkg.startsWith("@types/") && (inFamily(pkg) || !(cfg.extras ?? []).includes(pkg));
+    !!pkg && pkg !== "typescript" && !pkg.startsWith("@types/") && (inFamily(pkg) || !(cfg.extras ?? []).map(pkgName).includes(pkg));
   const ownsSpecifier = (spec: string) => inFamily(spec) || spec.startsWith(cfg.name + "/") || spec.startsWith(cfg.name + ":");
 
   const installed = (spec: string) => {
@@ -171,15 +181,21 @@ function checkOne(wsDir: string, cfg: PackageConfig, samples: SampleFile[], regi
     return "";
   };
 
-  return samples.map(({ task, sample, file }) => {
-    const sf = program.getSourceFile(file);
-    const result: SampleResult = { task, sample, file, valid: false, findings: [], unrelated: 0 };
-    if (!sf || !sf.text.trim() || service.getSyntacticDiagnostics(file).length) return result;
+  return samples.map((s) => {
+    const result: SampleResult = { task: s.task, sample: s.sample, file: s.file, valid: false, findings: [], unrelated: 0 };
+    const own = (s.files ?? [s.file]).filter(isTs);
+    const sources = own.map((f) => program.getSourceFile(f));
+    if (!own.length || sources.some((sf) => !sf || !sf.text.trim()) || own.some((f) => service.getSyntacticDiagnostics(f).length)) return result;
     result.valid = true;
     const seen = new Set<string>();
     const push = (f: Finding) => {
       if (!seen.has(f.key)) { seen.add(f.key); result.findings.push(f); }
     };
+    own.forEach((file, i) => scan(file, sources[i]!, result, push));
+    return result;
+  });
+
+  function scan(file: string, sf: ts.SourceFile, result: SampleResult, push: (f: Finding) => void) {
     const lineOf = (pos: number) => oneLine(sf.text.split("\n")[sf.getLineAndCharacterOfPosition(pos).line], 200);
 
     for (const d of service.getSemanticDiagnostics(file)) {
@@ -209,6 +225,5 @@ function checkOne(wsDir: string, cfg: PackageConfig, samples: SampleFile[], regi
       const name = oneLine(node.getText(), 40);
       push({ kind: "deprecated", key: `deprecated:${name}`, code: d.code, name, message: oneLine(ts.flattenDiagnosticMessageText(d.messageText, "\n"), 300), snippet: lineOf(d.start), ...hit });
     }
-    return result;
-  });
+  }
 }

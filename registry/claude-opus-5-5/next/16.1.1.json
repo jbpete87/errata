@@ -2,23 +2,48 @@
   "package": "next",
   "version": "16.1.1",
   "model": "claude-opus-5-5",
-  "measured": "2026-10-11",
-  "check": "typecheck + @deprecated (no execution)",
+  "measured": "2026-10-20",
+  "check": "typecheck + @deprecated + `next build --experimental-build-mode compile` warnings",
   "tasks": 8,
-  "samplesPerTask": 3,
+  "samplesPerTask": 5,
   "runs": [
     {
       "label": "baseline",
-      "samples": 24,
-      "valid": 24,
-      "passing": 24,
-      "clean": 24,
+      "samples": 40,
+      "valid": 40,
+      "passing": 39,
+      "clean": 39,
+      "errors": 1,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    },
+    {
+      "label": "with-card-1",
+      "samples": 40,
+      "valid": 40,
+      "passing": 40,
+      "clean": 40,
       "errors": 0,
-      "deprecations": 0
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
     }
   ],
-  "card": [],
-  "lines": [],
+  "card": [
+    "In next@16.1.1, revalidateTag(tag) with one argument fails; it requires a second profile argument: revalidateTag(tag, profile: string | CacheLifeConfig)."
+  ],
+  "lines": [
+    {
+      "text": "In next@16.1.1, revalidateTag(tag) with one argument fails; it requires a second profile argument: revalidateTag(tag, profile: string | CacheLifeConfig).",
+      "keys": [
+        "error:2554:revalidateTag"
+      ],
+      "foundIn": 0,
+      "before": 1,
+      "after": 0
+    }
+  ],
   "remaining": [],
   "samples": [
     {
@@ -29,168 +54,816 @@
           "sample": 0,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "dynamic-page",
           "sample": 1,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "dynamic-page",
           "sample": 2,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "dynamic-page",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "dynamic-page",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "route-handler",
           "sample": 0,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "route-handler",
           "sample": 1,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "route-handler",
           "sample": 2,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "intercept",
           "sample": 0,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "intercept",
           "sample": 1,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "intercept",
           "sample": 2,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "server-action",
           "sample": 0,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "server-action",
           "sample": 1,
           "valid": true,
           "findings": [],
-          "unrelated": 1
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "server-action",
           "sample": 2,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "config",
           "sample": 0,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "config",
           "sample": 1,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "config",
           "sample": 2,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "caching",
           "sample": 0,
           "valid": true,
-          "findings": [],
-          "unrelated": 0
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2554:revalidateTag",
+              "code": 2554,
+              "name": "revalidateTag",
+              "message": "Expected 2 arguments, but got 1.",
+              "snippet": "revalidateTag(PRODUCTS_TAG);",
+              "declPkg": "next",
+              "decl": "export declare function revalidateTag(tag: string, profile: string | CacheLifeConfig): undefined;"
+            }
+          ],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "caching",
           "sample": 1,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "caching",
           "sample": 2,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "metadata-files",
           "sample": 0,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "metadata-files",
           "sample": 1,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "metadata-files",
           "sample": 2,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "client-nav",
           "sample": 0,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "client-nav",
           "sample": 1,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         },
         {
           "task": "client-nav",
           "sample": 2,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        }
+      ]
+    },
+    {
+      "run": "with-card-1",
+      "results": [
+        {
+          "task": "dynamic-page",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "dynamic-page",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "dynamic-page",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "dynamic-page",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "dynamic-page",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 3,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 4,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
         }
       ]
     }

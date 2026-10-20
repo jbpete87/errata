@@ -1,0 +1,34 @@
+[
+  {
+    "id": "client-query",
+    "goal": "Create a typed client from environment variables and fetch the 20 most recent published posts with their author's name through a foreign-key relation, handling the error case."
+  },
+  {
+    "id": "insert-upsert",
+    "goal": "Insert a new row and return it, then upsert a batch of rows on a unique email column, and delete rows older than 30 days."
+  },
+  {
+    "id": "auth",
+    "goal": "Sign up a user with email and password and a display name stored in user metadata, sign in, read the current session, and sign out."
+  },
+  {
+    "id": "oauth-otp",
+    "goal": "Start a GitHub OAuth sign-in that redirects back to /auth/callback, and separately send a one-time magic link to an email address."
+  },
+  {
+    "id": "auth-listen",
+    "goal": "Listen for auth state changes and log sign-ins and sign-outs, and stop listening when asked."
+  },
+  {
+    "id": "storage",
+    "goal": "Upload a file to a storage bucket with a content type and upsert enabled, create a signed URL valid for one hour, and get the public URL for another file."
+  },
+  {
+    "id": "realtime",
+    "goal": "Subscribe to inserts and updates on a messages table filtered by room id, and to presence in that room, and clean up the subscription."
+  },
+  {
+    "id": "rpc-edge",
+    "goal": "Call a Postgres function with arguments and get a typed result, and invoke an edge function with a JSON body and an extra header."
+  }
+]

@@ -45,6 +45,11 @@ if no card applies any more, the block is removed.
 3. **Check**: each answer is typechecked on its own. A problem counts only if it traces back to the
    package: a type error on a symbol the package declares, a bad import of it, or use of an API
    it marks `@deprecated`. Everything else is counted as unrelated and ignored.
+   Packages with a `build` config are also run through their own toolchain: each answer goes into
+   a scaffolded project at the paths the model chose, the package's build runs, and the warnings
+   it prints count as findings. This catches what types cannot, such as a deprecated file name
+   (`middleware.ts` in Next 16). Helper modules an answer imports but does not include
+   (`@/lib/posts`) get stubs, so a missing file does not hide everything else.
 4. **Card**: the model writes one correction line per root cause, given the code, the compiler
    message and the real declaration.
 5. **Verify**: the tasks are re-run with the card shown as project notes. A line is kept only if
@@ -56,14 +61,19 @@ if no card applies any more, the block is removed.
 - `packages/<name>.json`: `name`, plus optional `extras` (installed alongside and offered to the
   model), `family` (name prefixes that count as the same package), `tsx`, `context`, and `types`
   (ambient declaration files to load, e.g. `astro/client`, for packages with virtual modules or
-  global augmentations).
+  global augmentations), and `build`: `command` (run from `node_modules/.bin`), `scaffold`
+  (files written first; answer files at the same path win), `warn` (regex for finding lines),
+  `ignore` (regexes for noise), `cleanup` and `timeoutMs`. See `packages/next.json`. Extras may pin
+  a version (`typescript@5`).
 - `tasks/<name>.json`: `[{ "id", "goal" }]`. Describe the goal in user terms and do not name the
   API, so the probe measures what the model reaches for unprompted.
 
 ## Limits
 
-- Typecheck and deprecations only. Code is not executed, so behaviour changes that keep the same
-  types are invisible.
+- Code is not executed. Packages without a `build` config are judged on types and deprecations
+  only; with one, only what the toolchain prints at build time is added. Behaviour that changes at
+  runtime with the same types is still invisible.
+- Build failures are recorded per sample but not turned into findings yet; only warnings are.
 - TypeScript/npm only, and the package needs type declarations.
 - One model call path: the `claude` CLI. The model is whatever the CLI reports.
 - With `--samples 1` a line can look verified by chance; use 3 or more before trusting a card.

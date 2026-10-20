@@ -1,0 +1,34 @@
+[
+  {
+    "id": "send-basic",
+    "goal": "Send a transactional email with a from address, two recipients, a subject, an HTML body and a plain-text fallback, and return the id of the sent email or throw with the error message if sending failed."
+  },
+  {
+    "id": "send-react",
+    "goal": "Define a small React email template for a password reset (greeting and a reset link) and send it to one user."
+  },
+  {
+    "id": "attachments",
+    "goal": "Send an email with a PDF attachment from an in-memory buffer, a reply-to address, a CC recipient, and a custom header for tracking."
+  },
+  {
+    "id": "batch",
+    "goal": "Send personalised welcome emails to a list of up to 100 users in a single request and return the ids."
+  },
+  {
+    "id": "schedule",
+    "goal": "Schedule an email to be sent tomorrow at 9am UTC, then reschedule it an hour later, then cancel it."
+  },
+  {
+    "id": "contacts",
+    "goal": "Add a contact with first and last name to an audience, mark another contact as unsubscribed, and list all contacts in the audience."
+  },
+  {
+    "id": "domains",
+    "goal": "Register a sending domain, read back the DNS records needed to verify it, and trigger verification."
+  },
+  {
+    "id": "idempotent",
+    "goal": "Send an order confirmation email so that retrying the same request after a network failure does not send it twice, and tag the email with the order id for later lookup."
+  }
+]

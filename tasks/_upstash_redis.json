@@ -1,0 +1,34 @@
+[
+  {
+    "id": "basic",
+    "goal": "Create a client from environment variables, set a session value with a one-hour expiry, read it back typed, and delete it."
+  },
+  {
+    "id": "counters",
+    "goal": "Implement a page-view counter that increments a key per page and returns the top 10 pages by views using a sorted set."
+  },
+  {
+    "id": "hashes",
+    "goal": "Store a user profile as a hash with several fields, update one field, read the whole hash back typed, and check whether a field exists."
+  },
+  {
+    "id": "pipeline",
+    "goal": "Read three keys and increment a counter in a single round trip, and separately run two commands atomically."
+  },
+  {
+    "id": "lists-sets",
+    "goal": "Push items onto a capped recent-activity list keeping only the latest 50, and track unique visitors per day with a set and count them."
+  },
+  {
+    "id": "json",
+    "goal": "Store a nested JSON document, update one nested field in place, and read a single path from it."
+  },
+  {
+    "id": "scan",
+    "goal": "Iterate over all keys matching a prefix without blocking the server, and delete them in batches."
+  },
+  {
+    "id": "lua-cache",
+    "goal": "Write a cache-aside helper that returns a cached value or computes and stores it with an expiry, and run a small server-side script that sets a key only if its current value matches."
+  }
+]
