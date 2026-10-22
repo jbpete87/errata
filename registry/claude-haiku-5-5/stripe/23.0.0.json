@@ -22,20 +22,20 @@
       "label": "with-card-1",
       "samples": 24,
       "valid": 24,
-      "passing": 24,
-      "clean": 24,
-      "errors": 0,
+      "passing": 23,
+      "clean": 23,
+      "errors": 1,
       "deprecations": 0,
       "warnings": 0,
       "buildFailures": 0
     }
   ],
   "card": [
-    "StripeConfig.apiVersion is typed LatestApiVersion (currently '2026-09-30.endive'); pinning an older date string fails to compile. Use that literal, or null with @ts-ignore per docs."
+    "StripeConfig.apiVersion is typed as LatestApiVersion, which is '2026-09-30.endive' in stripe@23.0.0; older strings like '2024-06-20' fail. Use the latest version or omit it."
   ],
   "lines": [
     {
-      "text": "StripeConfig.apiVersion is typed LatestApiVersion (currently '2026-09-30.endive'); pinning an older date string fails to compile. Use that literal, or null with @ts-ignore per docs.",
+      "text": "StripeConfig.apiVersion is typed as LatestApiVersion, which is '2026-09-30.endive' in stripe@23.0.0; older strings like '2024-06-20' fail. Use the latest version or omit it.",
       "keys": [
         "error:2322:apiVersion@Stripe"
       ],
@@ -45,8 +45,21 @@
     }
   ],
   "minCount": 2,
+  "cardModel": "opus",
   "rare": [],
-  "remaining": [],
+  "remaining": [
+    {
+      "kind": "error",
+      "key": "error:2322:stripe_customer_id@stripe.billing.meterEvents.create",
+      "code": 2322,
+      "name": "stripe_customer_id",
+      "message": "Type 'string | undefined' is not assignable to type 'string'. Type 'undefined' is not assignable to type 'string'.",
+      "snippet": "stripe_customer_id: customerId,",
+      "declPkg": "stripe",
+      "decl": "{ [key: string]: string; }",
+      "count": 1
+    }
+  ],
   "samples": [
     {
       "run": "baseline",
@@ -397,7 +410,18 @@
           "task": "usage",
           "sample": 0,
           "valid": true,
-          "findings": [],
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2322:stripe_customer_id@stripe.billing.meterEvents.create",
+              "code": 2322,
+              "name": "stripe_customer_id",
+              "message": "Type 'string | undefined' is not assignable to type 'string'. Type 'undefined' is not assignable to type 'string'.",
+              "snippet": "stripe_customer_id: customerId,",
+              "declPkg": "stripe",
+              "decl": "{ [key: string]: string; }"
+            }
+          ],
           "unrelated": 0
         },
         {

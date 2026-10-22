@@ -75,7 +75,9 @@ if no card applies any more, the block is removed.
   runtime with the same types is still invisible.
 - Build failures are recorded per sample but not turned into findings yet; only warnings are.
 - TypeScript/npm only, and the package needs type declarations.
-- One model call path: the `claude` CLI. The model is whatever the CLI reports.
+- One model call path: the `claude` CLI. The model is whatever the CLI reports. Use
+  `--card-model` to have a stronger model write the card while the probed model verifies it;
+  smaller models write noticeably worse cards.
 - With `--samples 1` a line can look verified by chance; use 3 or more before trusting a card.
 - A line that does not help is dropped, not rewritten.
 - A gap in the workspace can look like a mistake: if a package's global types are not loaded

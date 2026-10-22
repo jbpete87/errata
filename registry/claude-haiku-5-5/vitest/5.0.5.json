@@ -22,17 +22,6 @@
       "label": "with-card-1",
       "samples": 24,
       "valid": 24,
-      "passing": 23,
-      "clean": 21,
-      "errors": 1,
-      "deprecations": 2,
-      "warnings": 0,
-      "buildFailures": 0
-    },
-    {
-      "label": "with-card-2",
-      "samples": 24,
-      "valid": 24,
       "passing": 24,
       "clean": 24,
       "errors": 0,
@@ -42,13 +31,12 @@
     }
   ],
   "card": [
-    "`minWorkers` is not a property of `InlineConfig` in `defineConfig`; use `maxWorkers`, which the compiler suggests.",
-    "`test.skipIf(cond)` returns a collector with signature `(name, options?, fn?)`; pass options before the callback, not after it.",
-    "Do not call expect(...).toThrowError(...), which is deprecated in vitest@5.0.5; use expect(...).toThrow(...) instead."
+    "vitest config InlineConfig has no `minWorkers` option; remove it. Only `maxWorkers` is accepted.",
+    "test/test.skipIf(cond) options object goes before the function: `(name, { timeout, retry }, fn)`. As a third argument, after fn, only a number timeout is accepted."
   ],
   "lines": [
     {
-      "text": "`minWorkers` is not a property of `InlineConfig` in `defineConfig`; use `maxWorkers`, which the compiler suggests.",
+      "text": "vitest config InlineConfig has no `minWorkers` option; remove it. Only `maxWorkers` is accepted.",
       "keys": [
         "error:2769:minWorkers@defineConfig"
       ],
@@ -57,25 +45,17 @@
       "after": 0
     },
     {
-      "text": "`test.skipIf(cond)` returns a collector with signature `(name, options?, fn?)`; pass options before the callback, not after it.",
+      "text": "test/test.skipIf(cond) options object goes before the function: `(name, { timeout, retry }, fn)`. As a third argument, after fn, only a number timeout is accepted.",
       "keys": [
         "error:2769:test@test.skipIf"
       ],
       "foundIn": 0,
       "before": 2,
       "after": 0
-    },
-    {
-      "text": "Do not call expect(...).toThrowError(...), which is deprecated in vitest@5.0.5; use expect(...).toThrow(...) instead.",
-      "keys": [
-        "deprecated:toThrowError"
-      ],
-      "foundIn": 1,
-      "before": 2,
-      "after": 0
     }
   ],
   "minCount": 2,
+  "cardModel": "opus",
   "rare": [
     {
       "key": "deprecated:toThrowError",
@@ -428,212 +408,6 @@
           "sample": 0,
           "valid": true,
           "findings": [],
-          "unrelated": 1
-        },
-        {
-          "task": "mock-module",
-          "sample": 1,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "mock-module",
-          "sample": 2,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "timers",
-          "sample": 0,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "timers",
-          "sample": 1,
-          "valid": true,
-          "findings": [],
-          "unrelated": 1
-        },
-        {
-          "task": "timers",
-          "sample": 2,
-          "valid": true,
-          "findings": [],
-          "unrelated": 1
-        },
-        {
-          "task": "spies",
-          "sample": 0,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "spies",
-          "sample": 1,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "spies",
-          "sample": 2,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "async-assert",
-          "sample": 0,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "async-assert",
-          "sample": 1,
-          "valid": true,
-          "findings": [
-            {
-              "kind": "deprecated",
-              "key": "deprecated:toThrowError",
-              "code": 6385,
-              "name": "toThrowError",
-              "message": "'toThrowError' is deprecated.",
-              "snippet": "expect(() => parsePort('abc')).toThrowError(/Invalid port: abc/)",
-              "declPkg": "vitest",
-              "decl": "@deprecated Use `toThrow` instead\ntoThrowError: (expected?: any) => R;"
-            }
-          ],
-          "unrelated": 0
-        },
-        {
-          "task": "async-assert",
-          "sample": 2,
-          "valid": true,
-          "findings": [
-            {
-              "kind": "deprecated",
-              "key": "deprecated:toThrowError",
-              "code": 6385,
-              "name": "toThrowError",
-              "message": "'toThrowError' is deprecated.",
-              "snippet": "expect(() => parseVersion(\"1.2\")).toThrowError(/Invalid version/);",
-              "declPkg": "vitest",
-              "decl": "@deprecated Use `toThrow` instead\ntoThrowError: (expected?: any) => R;"
-            }
-          ],
-          "unrelated": 0
-        },
-        {
-          "task": "table-types",
-          "sample": 0,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "table-types",
-          "sample": 1,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "table-types",
-          "sample": 2,
-          "valid": true,
-          "findings": [
-            {
-              "kind": "error",
-              "key": "error:2339:returnType@expectTypeOf(normalizeTitle).returnType. …",
-              "code": 2339,
-              "name": "returnType",
-              "message": "Property 'returnType' does not exist on type 'PositiveExpectTypeOf<(input: string) => string>'.",
-              "snippet": "expectTypeOf(normalizeTitle).returnType.toEqualTypeOf<string>();",
-              "declPkg": "expect-type",
-              "decl": "export interface PositiveExpectTypeOf<Actual> extends BaseExpectTypeOf<Actual, { positive: true; branded: false; }> { /** * Similar to jest's `expect(...).toMatchObject(...)` but for types. * Deeply \"picks\" the properties of the actual type based on the expected type, then performs a strict check to make sure the types match `Expected`. * * **Note**: optional properties on the {@linkcode Expected | expected type} are not allowed to be missing on the {@linkcode Actual | actual type}. * * @example * ```ts * expectTypeOf({ a: 1, b: 1 }).toMatchObjectType<{ a: number }>() * * expectTypeOf({ a: 1,  …"
-            }
-          ],
-          "unrelated": 0
-        }
-      ]
-    },
-    {
-      "run": "with-card-2",
-      "results": [
-        {
-          "task": "config-basic",
-          "sample": 0,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "config-basic",
-          "sample": 1,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "config-basic",
-          "sample": 2,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "config-isolation",
-          "sample": 0,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "config-isolation",
-          "sample": 1,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "config-isolation",
-          "sample": 2,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "config-browser",
-          "sample": 0,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "config-browser",
-          "sample": 1,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "config-browser",
-          "sample": 2,
-          "valid": true,
-          "findings": [],
-          "unrelated": 0
-        },
-        {
-          "task": "mock-module",
-          "sample": 0,
-          "valid": true,
-          "findings": [],
           "unrelated": 0
         },
         {
@@ -641,7 +415,7 @@
           "sample": 1,
           "valid": true,
           "findings": [],
-          "unrelated": 1
+          "unrelated": 0
         },
         {
           "task": "mock-module",

@@ -17,6 +17,8 @@ const USAGE = `errata <command>
       --rounds <n>         card/verify rounds (default: 2)
       --min-count <n>      samples a mistake must appear in to get a card line (default: 2)
       --model <id>         passed to claude --model (default: the CLI's default)
+      --card-model <id>    model that writes the card (default: --model); cards are still
+                           verified on --model
       --concurrency <n>    parallel model calls (default: 3)
 
   check <package> <dir>    typecheck existing .ts/.tsx answers in <dir> against the package
@@ -37,6 +39,7 @@ const { positionals, values } = parseArgs({
     rounds: { type: "string", default: "2" },
     "min-count": { type: "string", default: "2" },
     model: { type: "string" },
+    "card-model": { type: "string" },
     concurrency: { type: "string", default: "3" },
     file: { type: "string" },
     "dry-run": { type: "boolean", default: false },
@@ -46,7 +49,7 @@ const [command, pkg, target] = positionals;
 
 try {
   if (command === "run" && pkg) {
-    await run(pkg, { version: values.version, samples: Number(values.samples), rounds: Number(values.rounds), minCount: Number(values["min-count"]), model: values.model, concurrency: Number(values.concurrency) });
+    await run(pkg, { version: values.version, samples: Number(values.samples), rounds: Number(values.rounds), minCount: Number(values["min-count"]), cardModel: values["card-model"], model: values.model, concurrency: Number(values.concurrency) });
   } else if (command === "sync") {
     sync(resolve(pkg ?? "."), { model: values.model, file: values.file, dryRun: values["dry-run"] });
   } else if (command === "check" && pkg && target) {

@@ -31,12 +31,12 @@
     }
   ],
   "card": [
-    "The \"middleware\" file convention is deprecated in next@16.1.1; use the \"proxy\" file convention instead.",
-    "revalidateTag takes two arguments: a tag string and a profile of type string | CacheLifeConfig. A single-argument call fails with TS2554."
+    "In next@16, the middleware.ts file convention is deprecated; use the proxy file convention (proxy.ts) instead.",
+    "revalidateTag(tag) with one argument fails; next@16 requires revalidateTag(tag, profile) where profile is string | CacheLifeConfig."
   ],
   "lines": [
     {
-      "text": "The \"middleware\" file convention is deprecated in next@16.1.1; use the \"proxy\" file convention instead.",
+      "text": "In next@16, the middleware.ts file convention is deprecated; use the proxy file convention (proxy.ts) instead.",
       "keys": [
         "build:The \"middleware\" file convention is deprecated. Please use \"proxy\" instead. Learn more: https:<path>"
       ],
@@ -45,7 +45,7 @@
       "after": 0
     },
     {
-      "text": "revalidateTag takes two arguments: a tag string and a profile of type string | CacheLifeConfig. A single-argument call fails with TS2554.",
+      "text": "revalidateTag(tag) with one argument fails; next@16 requires revalidateTag(tag, profile) where profile is string | CacheLifeConfig.",
       "keys": [
         "error:2554:revalidateTag"
       ],
@@ -55,6 +55,7 @@
     }
   ],
   "minCount": 2,
+  "cardModel": "opus",
   "rare": [],
   "remaining": [],
   "samples": [

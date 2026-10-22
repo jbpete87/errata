@@ -42,17 +42,16 @@
     }
   ],
   "card": [
-    "Do not pass convertToModelMessages(...) directly as streamText's messages; it returns Promise<ModelMessage[]>. Await it first.",
-    "Deprecated: result.toUIMessageStreamResponse(). Use standalone toUIMessageStream and createUIMessageStreamResponse helpers from 'ai' with result.stream.",
-    "Deprecated: generateObject. Use generateText with an output setting instead.",
-    "Deprecated: streamObject. Use streamText with an output setting instead.",
-    "Deprecated: result.totalUsage. Use usage instead.",
-    "Deprecated: result.response. Use finalStep.response instead.",
-    "Wrong: passing a bare AsyncIterableStream to toUIMessageStream. Right: toUIMessageStream({ stream }), since its parameter requires an object with a stream: ReadableStream property."
+    "In ai@7, convertToModelMessages returns Promise<ModelMessage[]>; await it before passing as streamText `messages`: `messages: await convertToModelMessages(...)`.",
+    "result.toUIMessageStreamResponse() is deprecated; use standalone `toUIMessageStream` and `createUIMessageStreamResponse` from 'ai' with `result.stream`.",
+    "generateObject and streamObject are deprecated; use `generateText` / `streamText` with an `output` setting instead.",
+    "result.totalUsage is deprecated; use `result.usage` instead.",
+    "result.response is deprecated; use `result.finalStep.response` instead (e.g. `finalStep.response.messages`).",
+    "toUIMessageStream takes an options object, not a bare stream: call toUIMessageStream({ stream, tools?, ...UIMessageStreamOptions }) where stream is the result's stream (AsyncIterableStream<TextStreamPart>)."
   ],
   "lines": [
     {
-      "text": "Do not pass convertToModelMessages(...) directly as streamText's messages; it returns Promise<ModelMessage[]>. Await it first.",
+      "text": "In ai@7, convertToModelMessages returns Promise<ModelMessage[]>; await it before passing as streamText `messages`: `messages: await convertToModelMessages(...)`.",
       "keys": [
         "error:2740:messages@streamText"
       ],
@@ -61,7 +60,7 @@
       "after": 0
     },
     {
-      "text": "Deprecated: result.toUIMessageStreamResponse(). Use standalone toUIMessageStream and createUIMessageStreamResponse helpers from 'ai' with result.stream.",
+      "text": "result.toUIMessageStreamResponse() is deprecated; use standalone `toUIMessageStream` and `createUIMessageStreamResponse` from 'ai' with `result.stream`.",
       "keys": [
         "deprecated:toUIMessageStreamResponse"
       ],
@@ -70,25 +69,17 @@
       "after": 0
     },
     {
-      "text": "Deprecated: generateObject. Use generateText with an output setting instead.",
+      "text": "generateObject and streamObject are deprecated; use `generateText` / `streamText` with an `output` setting instead.",
       "keys": [
-        "deprecated:generateObject"
-      ],
-      "foundIn": 0,
-      "before": 3,
-      "after": 0
-    },
-    {
-      "text": "Deprecated: streamObject. Use streamText with an output setting instead.",
-      "keys": [
+        "deprecated:generateObject",
         "deprecated:streamObject"
       ],
       "foundIn": 0,
-      "before": 3,
+      "before": 6,
       "after": 0
     },
     {
-      "text": "Deprecated: result.totalUsage. Use usage instead.",
+      "text": "result.totalUsage is deprecated; use `result.usage` instead.",
       "keys": [
         "deprecated:totalUsage"
       ],
@@ -97,7 +88,7 @@
       "after": 0
     },
     {
-      "text": "Deprecated: result.response. Use finalStep.response instead.",
+      "text": "result.response is deprecated; use `result.finalStep.response` instead (e.g. `finalStep.response.messages`).",
       "keys": [
         "deprecated:response"
       ],
@@ -106,16 +97,17 @@
       "after": 0
     },
     {
-      "text": "Wrong: passing a bare AsyncIterableStream to toUIMessageStream. Right: toUIMessageStream({ stream }), since its parameter requires an object with a stream: ReadableStream property.",
+      "text": "toUIMessageStream takes an options object, not a bare stream: call toUIMessageStream({ stream, tools?, ...UIMessageStreamOptions }) where stream is the result's stream (AsyncIterableStream<TextStreamPart>).",
       "keys": [
         "error:2345:result@toUIMessageStream"
       ],
       "foundIn": 1,
-      "before": 3,
+      "before": 2,
       "after": 0
     }
   ],
   "minCount": 2,
+  "cardModel": "opus",
   "rare": [
     {
       "key": "error:2345:partial@onPartial",
@@ -522,18 +514,7 @@
           "task": "chat-route",
           "sample": 0,
           "valid": true,
-          "findings": [
-            {
-              "kind": "error",
-              "key": "error:2345:result@toUIMessageStream",
-              "code": 2345,
-              "name": "result",
-              "message": "Argument of type 'AsyncIterableStream<TextStreamPart<ToolSet>>' is not assignable to parameter of type '{ stream: ReadableStream<TextStreamPart<ToolSet>>; tools?: ToolSet | undefined; } & UIMessageStreamOptions<UIMessage<unknown, UIDataTypes, UITools>>'. Property 'stream' is missing in type 'AsyncIterable<TextStreamPart<ToolSet>> & ReadableStream<TextStreamPart<ToolSet>>' but required in type '{ stream: ReadableStream<TextStreamPart<ToolSet>>; tools?: ToolSet | undefined; }'.",
-              "snippet": "stream: toUIMessageStream(result.stream),",
-              "declPkg": "ai",
-              "decl": "readonly stream: AsyncIterableStream<TextStreamPart<TOOLS>>;"
-            }
-          ],
+          "findings": [],
           "unrelated": 0
         },
         {
@@ -681,8 +662,19 @@
           "task": "stream-object",
           "sample": 0,
           "valid": true,
-          "findings": [],
-          "unrelated": 0
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2352:result",
+              "code": 2352,
+              "name": "result",
+              "message": "Conversion of type 'AsyncIterableStream<{ title: string; pitch: string; }[]>' to type 'AsyncIterableIterator<Partial<{ title: string; pitch: string; }>[]>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first. Property 'next' is missing in type 'AsyncIterable<{ title: string; pitch: string; }[]> & ReadableStream<{ title: string; pitch: string; }[]>' but required in type 'AsyncIterableIterator<Partial<{ titl …",
+              "snippet": "partials: result.partialOutputStream as AsyncIterableIterator<Partial<ProductIdea>[]>,",
+              "declPkg": "ai",
+              "decl": "readonly partialOutputStream: AsyncIterableStream<InferPartialOutput<OUTPUT>>;"
+            }
+          ],
+          "unrelated": 1
         },
         {
           "task": "stream-object",
@@ -696,7 +688,7 @@
           "sample": 2,
           "valid": true,
           "findings": [],
-          "unrelated": 0
+          "unrelated": 2
         }
       ]
     },

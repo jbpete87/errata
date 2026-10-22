@@ -14,6 +14,8 @@ export interface RunOptions {
   rounds: number;
   /** a mistake must appear in at least this many samples of a run to get a card line */
   minCount: number;
+  /** model that writes the card (default: the probed model); verification always uses the probed model */
+  cardModel?: string;
   model?: string;
   concurrency: number;
 }
@@ -64,7 +66,7 @@ export async function run(pkg: string, opts: RunOptions) {
     const covered = new Set(lines.flatMap((l) => l.keys));
     // One sighting may be chance, and every line costs context in every session: require repeats.
     const fresh = [...latest.values()].filter((e) => !covered.has(e.finding.key) && e.count >= opts.minCount);
-    const added = await writeCard(cfg, ws.version, fresh.map((e) => e.finding), opts.model);
+    const added = await writeCard(cfg, ws.version, fresh.map((e) => e.finding), opts.cardModel ?? opts.model);
     for (const l of added) {
       lines.push({ ...l, foundIn: runs.length - 1, before: l.keys.reduce((n, k) => n + (latest.get(k)?.count ?? 0), 0), after: null });
     }
@@ -96,6 +98,7 @@ export async function run(pkg: string, opts: RunOptions) {
     card: verified.map((l) => l.text),
     lines,
     minCount: opts.minCount,
+    cardModel: opts.cardModel ?? null,
     // Seen at baseline, but too rarely to earn a line.
     rare: [...tally(runs[0]).values()].filter((e) => e.count < opts.minCount).map((e) => ({ key: e.finding.key, count: e.count, message: e.finding.message, snippet: e.finding.snippet })),
     remaining: [...final.values()].filter((e) => !coveredKeys.has(e.finding.key)).map((e) => ({ ...e.finding, count: e.count })),

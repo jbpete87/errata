@@ -10,5 +10,5 @@ for arg in "$@"; do
     *) p="$arg"; v=latest ;;
   esac
   log=".errata/logs/${MODEL:-default}-$(echo "$p" | tr '/@' '__')-$v.log"
-  node src/cli.ts run "$p" --version "$v" ${MODEL:+--model "$MODEL"} --samples "${SAMPLES:-3}" --concurrency "${CONCURRENCY:-5}" > "$log" 2>&1 || echo "FAILED $arg" >> .errata/logs/failed
+  node src/cli.ts run "$p" --version "$v" ${MODEL:+--model "$MODEL"} ${CARD_MODEL:+--card-model "$CARD_MODEL"} --samples "${SAMPLES:-3}" --concurrency "${CONCURRENCY:-5}" > "$log" 2>&1 || echo "FAILED $arg" >> .errata/logs/failed
 done

@@ -22,20 +22,20 @@
       "label": "with-card-1",
       "samples": 24,
       "valid": 24,
-      "passing": 24,
-      "clean": 24,
-      "errors": 0,
+      "passing": 23,
+      "clean": 23,
+      "errors": 2,
       "deprecations": 0,
       "warnings": 0,
       "buildFailures": 0
     }
   ],
   "card": [
-    "APIError has no 'request_id' property; use 'requestID' (compiler suggestion, declaration truncated). Keep 'status' and 'message' as written."
+    "APIError has no `request_id` property; use `requestID` (camelCase), as the compiler suggests. The truncated declaration doesn't show its type."
   ],
   "lines": [
     {
-      "text": "APIError has no 'request_id' property; use 'requestID' (compiler suggestion, declaration truncated). Keep 'status' and 'message' as written.",
+      "text": "APIError has no `request_id` property; use `requestID` (camelCase), as the compiler suggests. The truncated declaration doesn't show its type.",
       "keys": [
         "error:2551:request_id@console.error"
       ],
@@ -45,6 +45,7 @@
     }
   ],
   "minCount": 2,
+  "cardModel": "opus",
   "rare": [
     {
       "key": "error:7052:err",
@@ -59,7 +60,30 @@
       "snippet": "`Rate limited (status=${err.status} request_id=${err.request_id}); retrying in ${Math.round(delay)}ms (attempt ${attempt + 2}/${MAX_ATTEMPTS})`,"
     }
   ],
-  "remaining": [],
+  "remaining": [
+    {
+      "kind": "error",
+      "key": "error:2339:function",
+      "code": 2339,
+      "name": "function",
+      "message": "Property 'function' does not exist on type 'ChatCompletionMessageToolCall'. Property 'function' does not exist on type 'ChatCompletionMessageCustomToolCall'.",
+      "snippet": "if (call.function.name !== \"get_weather\") {",
+      "declPkg": "openai",
+      "decl": "export type ChatCompletionMessageToolCall = ChatCompletionMessageFunctionToolCall | ChatCompletionMessageCustomToolCall;",
+      "count": 1
+    },
+    {
+      "kind": "error",
+      "key": "error:2339:function@JSON.parse",
+      "code": 2339,
+      "name": "function",
+      "message": "Property 'function' does not exist on type 'ChatCompletionMessageToolCall'. Property 'function' does not exist on type 'ChatCompletionMessageCustomToolCall'.",
+      "snippet": "raw = JSON.parse(call.function.arguments);",
+      "declPkg": "openai",
+      "decl": "export type ChatCompletionMessageToolCall = ChatCompletionMessageFunctionToolCall | ChatCompletionMessageCustomToolCall;",
+      "count": 1
+    }
+  ],
   "samples": [
     {
       "run": "baseline",
@@ -360,7 +384,28 @@
           "task": "tools",
           "sample": 2,
           "valid": true,
-          "findings": [],
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2339:function",
+              "code": 2339,
+              "name": "function",
+              "message": "Property 'function' does not exist on type 'ChatCompletionMessageToolCall'. Property 'function' does not exist on type 'ChatCompletionMessageCustomToolCall'.",
+              "snippet": "if (call.function.name !== \"get_weather\") {",
+              "declPkg": "openai",
+              "decl": "export type ChatCompletionMessageToolCall = ChatCompletionMessageFunctionToolCall | ChatCompletionMessageCustomToolCall;"
+            },
+            {
+              "kind": "error",
+              "key": "error:2339:function@JSON.parse",
+              "code": 2339,
+              "name": "function",
+              "message": "Property 'function' does not exist on type 'ChatCompletionMessageToolCall'. Property 'function' does not exist on type 'ChatCompletionMessageCustomToolCall'.",
+              "snippet": "raw = JSON.parse(call.function.arguments);",
+              "declPkg": "openai",
+              "decl": "export type ChatCompletionMessageToolCall = ChatCompletionMessageFunctionToolCall | ChatCompletionMessageCustomToolCall;"
+            }
+          ],
           "unrelated": 0
         },
         {
