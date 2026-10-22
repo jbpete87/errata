@@ -9,6 +9,6 @@ for arg in "$@"; do
     *@*) p="${arg%@*}"; v="${arg##*@}" ;;
     *) p="$arg"; v=latest ;;
   esac
-  log=".errata/logs/$(echo "$p" | tr '/@' '__').log"
-  node src/cli.ts run "$p" --version "$v" --samples "${SAMPLES:-3}" --concurrency "${CONCURRENCY:-5}" > "$log" 2>&1 || echo "FAILED $arg" >> .errata/logs/failed
+  log=".errata/logs/${MODEL:-default}-$(echo "$p" | tr '/@' '__')-$v.log"
+  node src/cli.ts run "$p" --version "$v" ${MODEL:+--model "$MODEL"} --samples "${SAMPLES:-3}" --concurrency "${CONCURRENCY:-5}" > "$log" 2>&1 || echo "FAILED $arg" >> .errata/logs/failed
 done

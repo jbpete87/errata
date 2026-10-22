@@ -1,0 +1,420 @@
+{
+  "package": "stripe",
+  "version": "23.0.0",
+  "model": "claude-haiku-5-5",
+  "measured": "2026-10-22",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 22,
+      "clean": 22,
+      "errors": 2,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    },
+    {
+      "label": "with-card-1",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 24,
+      "errors": 0,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    }
+  ],
+  "card": [
+    "StripeConfig.apiVersion is typed LatestApiVersion (currently '2026-09-30.endive'); pinning an older date string fails to compile. Use that literal, or null with @ts-ignore per docs."
+  ],
+  "lines": [
+    {
+      "text": "StripeConfig.apiVersion is typed LatestApiVersion (currently '2026-09-30.endive'); pinning an older date string fails to compile. Use that literal, or null with @ts-ignore per docs.",
+      "keys": [
+        "error:2322:apiVersion@Stripe"
+      ],
+      "foundIn": 0,
+      "before": 2,
+      "after": 0
+    }
+  ],
+  "minCount": 2,
+  "rare": [],
+  "remaining": [],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "checkout",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "checkout",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "checkout",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "webhook",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "webhook",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "webhook",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "customers",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "customers",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "customers",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "one-time",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "one-time",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "one-time",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "cancel",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "cancel",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "cancel",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "invoices",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "invoices",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "invoices",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "portal-refund",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "portal-refund",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2322:apiVersion@Stripe",
+              "code": 2322,
+              "name": "apiVersion",
+              "message": "Type '\"2024-06-20\"' is not assignable to type '\"2026-09-30.endive\"'.",
+              "snippet": "apiVersion: '2024-06-20',",
+              "declPkg": "stripe",
+              "decl": "export interface StripeConfig { /** * This library's types only reflect the latest API version. * * We recommend upgrading your account's API Version to the latest version * if you wish to use TypeScript with this library. * * If you wish to remain on your account's default API version, * you may pass `null` or another version instead of the latest version, * and add a `@ts-ignore` comment here and anywhere the types differ between API versions. * * @docs https://stripe.com/docs/api/versioning */ apiVersion?: LatestApiVersion; /** * Provide a custom authenticator function for all requests. * C …"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "portal-refund",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2322:apiVersion@Stripe",
+              "code": 2322,
+              "name": "apiVersion",
+              "message": "Type '\"2024-06-20\"' is not assignable to type '\"2026-09-30.endive\"'.",
+              "snippet": "apiVersion: \"2024-06-20\",",
+              "declPkg": "stripe",
+              "decl": "export interface StripeConfig { /** * This library's types only reflect the latest API version. * * We recommend upgrading your account's API Version to the latest version * if you wish to use TypeScript with this library. * * If you wish to remain on your account's default API version, * you may pass `null` or another version instead of the latest version, * and add a `@ts-ignore` comment here and anywhere the types differ between API versions. * * @docs https://stripe.com/docs/api/versioning */ apiVersion?: LatestApiVersion; /** * Provide a custom authenticator function for all requests. * C …"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "usage",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "usage",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "usage",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    },
+    {
+      "run": "with-card-1",
+      "results": [
+        {
+          "task": "checkout",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "checkout",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "checkout",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "webhook",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "webhook",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "webhook",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "customers",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "customers",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "customers",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "one-time",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "one-time",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "one-time",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "cancel",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "cancel",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "cancel",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "invoices",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "invoices",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "invoices",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "portal-refund",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "portal-refund",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "portal-refund",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "usage",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "usage",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "usage",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}

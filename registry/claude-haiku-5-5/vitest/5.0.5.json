@@ -1,0 +1,740 @@
+{
+  "package": "vitest",
+  "version": "5.0.5",
+  "model": "claude-haiku-5-5",
+  "measured": "2026-10-22",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 19,
+      "clean": 18,
+      "errors": 7,
+      "deprecations": 1,
+      "warnings": 0,
+      "buildFailures": 0
+    },
+    {
+      "label": "with-card-1",
+      "samples": 24,
+      "valid": 24,
+      "passing": 23,
+      "clean": 21,
+      "errors": 1,
+      "deprecations": 2,
+      "warnings": 0,
+      "buildFailures": 0
+    },
+    {
+      "label": "with-card-2",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 24,
+      "errors": 0,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    }
+  ],
+  "card": [
+    "`minWorkers` is not a property of `InlineConfig` in `defineConfig`; use `maxWorkers`, which the compiler suggests.",
+    "`test.skipIf(cond)` returns a collector with signature `(name, options?, fn?)`; pass options before the callback, not after it.",
+    "Do not call expect(...).toThrowError(...), which is deprecated in vitest@5.0.5; use expect(...).toThrow(...) instead."
+  ],
+  "lines": [
+    {
+      "text": "`minWorkers` is not a property of `InlineConfig` in `defineConfig`; use `maxWorkers`, which the compiler suggests.",
+      "keys": [
+        "error:2769:minWorkers@defineConfig"
+      ],
+      "foundIn": 0,
+      "before": 3,
+      "after": 0
+    },
+    {
+      "text": "`test.skipIf(cond)` returns a collector with signature `(name, options?, fn?)`; pass options before the callback, not after it.",
+      "keys": [
+        "error:2769:test@test.skipIf"
+      ],
+      "foundIn": 0,
+      "before": 2,
+      "after": 0
+    },
+    {
+      "text": "Do not call expect(...).toThrowError(...), which is deprecated in vitest@5.0.5; use expect(...).toThrow(...) instead.",
+      "keys": [
+        "deprecated:toThrowError"
+      ],
+      "foundIn": 1,
+      "before": 2,
+      "after": 0
+    }
+  ],
+  "minCount": 2,
+  "rare": [
+    {
+      "key": "deprecated:toThrowError",
+      "count": 1,
+      "message": "'toThrowError' is deprecated.",
+      "snippet": "expect(() => parsePort(\"abc\")).toThrowError(/Invalid port: abc/);"
+    },
+    {
+      "key": "error:2769:test@test.each",
+      "count": 1,
+      "message": "No overload matches this call. Overload 1 of 2, '(name: string | Function, fn: (...args: { input: string; expected: string; }[]) => Awaitable<void>, options?: number | undefined): void', gave the following error. Argument of type '{ timeout: number; retry: number; }' is not assignable to parameter of type 'number'. Overload 2 of 2, '(name: string | Function, options: TestCollectorOptions, fn: (...args: { input: string; expected: string; }[]) => Awaitable<void>): void', gave the following error.  …",
+      "snippet": "test.each(cases)("
+    },
+    {
+      "key": "error:2769:test",
+      "count": 1,
+      "message": "No overload matches this call. Overload 1 of 2, '(name: string | Function, fn?: TestFunction<object> | undefined, options?: number | undefined): void', gave the following error. Argument of type '{ timeout: number; retry: number; }' is not assignable to parameter of type 'number'. Overload 2 of 2, '(name: string | Function, options?: TestCollectorOptions | undefined, fn?: TestFunction<object> | undefined): void', gave the following error. Type '() => void' has no properties in common with type ' …",
+      "snippet": "test("
+    }
+  ],
+  "remaining": [],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "config-basic",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-basic",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-basic",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2769:minWorkers@defineConfig",
+              "code": 2769,
+              "name": "minWorkers",
+              "message": "No overload matches this call. The last overload gave the following error. Object literal may only specify known properties, but 'minWorkers' does not exist in type 'InlineConfig'. Did you mean to write 'maxWorkers'?",
+              "snippet": "minWorkers: 1,",
+              "declPkg": "vitest",
+              "decl": "interface InlineConfig { /** * Name of the project. Will be used to display in the reporter. */ name?: string | ProjectName; /** * Benchmark options. * * @default {} */ benchmark?: BenchmarkUserOptions; /** * A list of [glob patterns](https://superchupu.dev/tinyglobby/comparison) that match your test files. * * @default ['**\\/*.{test,spec}.?(c|m)[jt]s?(x)'] * @see {@link https://vitest.dev/config/include} */ include?: string[]; /** * Exclude globs for test files * @default ['**\\/node_modules/**', '**\\/.git/**'] */ exclude?: string[]; /** * Include globs for in-source test files * * @default [] …"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2769:minWorkers@defineConfig",
+              "code": 2769,
+              "name": "minWorkers",
+              "message": "No overload matches this call. The last overload gave the following error. Object literal may only specify known properties, but 'minWorkers' does not exist in type 'InlineConfig'. Did you mean to write 'maxWorkers'?",
+              "snippet": "minWorkers: 1,",
+              "declPkg": "vitest",
+              "decl": "interface InlineConfig { /** * Name of the project. Will be used to display in the reporter. */ name?: string | ProjectName; /** * Benchmark options. * * @default {} */ benchmark?: BenchmarkUserOptions; /** * A list of [glob patterns](https://superchupu.dev/tinyglobby/comparison) that match your test files. * * @default ['**\\/*.{test,spec}.?(c|m)[jt]s?(x)'] * @see {@link https://vitest.dev/config/include} */ include?: string[]; /** * Exclude globs for test files * @default ['**\\/node_modules/**', '**\\/.git/**'] */ exclude?: string[]; /** * Include globs for in-source test files * * @default [] …"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2769:minWorkers@defineConfig",
+              "code": 2769,
+              "name": "minWorkers",
+              "message": "No overload matches this call. The last overload gave the following error. Object literal may only specify known properties, but 'minWorkers' does not exist in type 'InlineConfig'. Did you mean to write 'maxWorkers'?",
+              "snippet": "minWorkers: 1,",
+              "declPkg": "vitest",
+              "decl": "interface InlineConfig { /** * Name of the project. Will be used to display in the reporter. */ name?: string | ProjectName; /** * Benchmark options. * * @default {} */ benchmark?: BenchmarkUserOptions; /** * A list of [glob patterns](https://superchupu.dev/tinyglobby/comparison) that match your test files. * * @default ['**\\/*.{test,spec}.?(c|m)[jt]s?(x)'] * @see {@link https://vitest.dev/config/include} */ include?: string[]; /** * Exclude globs for test files * @default ['**\\/node_modules/**', '**\\/.git/**'] */ exclude?: string[]; /** * Include globs for in-source test files * * @default [] …"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "mock-module",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "mock-module",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "mock-module",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "timers",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "timers",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "timers",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "spies",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "spies",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "spies",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:toThrowError",
+              "code": 6385,
+              "name": "toThrowError",
+              "message": "'toThrowError' is deprecated.",
+              "snippet": "expect(() => parsePort(\"abc\")).toThrowError(/Invalid port: abc/);",
+              "declPkg": "vitest",
+              "decl": "@deprecated Use `toThrow` instead\ntoThrowError: (expected?: any) => R;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2769:test@test.each",
+              "code": 2769,
+              "name": "test",
+              "message": "No overload matches this call. Overload 1 of 2, '(name: string | Function, fn: (...args: { input: string; expected: string; }[]) => Awaitable<void>, options?: number | undefined): void', gave the following error. Argument of type '{ timeout: number; retry: number; }' is not assignable to parameter of type 'number'. Overload 2 of 2, '(name: string | Function, options: TestCollectorOptions, fn: (...args: { input: string; expected: string; }[]) => Awaitable<void>): void', gave the following error.  …",
+              "snippet": "test.each(cases)(",
+              "declPkg": "vitest",
+              "decl": "test: TestAPI"
+            },
+            {
+              "kind": "error",
+              "key": "error:2769:test@test.skipIf",
+              "code": 2769,
+              "name": "test",
+              "message": "No overload matches this call. Overload 1 of 2, '(name: string | Function, fn?: TestFunction<object> | undefined, options?: number | undefined): void', gave the following error. Argument of type '{ timeout: number; retry: number; }' is not assignable to parameter of type 'number'. Overload 2 of 2, '(name: string | Function, options?: TestCollectorOptions | undefined, fn?: TestFunction<object> | undefined): void', gave the following error. Type '() => void' has no properties in common with type ' …",
+              "snippet": "test.skipIf(isCI)(",
+              "declPkg": "vitest",
+              "decl": "test: TestAPI"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2769:test@test.skipIf",
+              "code": 2769,
+              "name": "test",
+              "message": "No overload matches this call. Overload 1 of 2, '(name: string | Function, fn?: TestFunction<object> | undefined, options?: number | undefined): void', gave the following error. Argument of type '{ timeout: number; retry: number; }' is not assignable to parameter of type 'number'. Overload 2 of 2, '(name: string | Function, options?: TestCollectorOptions | undefined, fn?: TestFunction<object> | undefined): void', gave the following error. Type '() => Promise<void>' has no properties in common wi …",
+              "snippet": "test.skipIf(isCI)(",
+              "declPkg": "vitest",
+              "decl": "test: TestAPI"
+            },
+            {
+              "kind": "error",
+              "key": "error:2769:test",
+              "code": 2769,
+              "name": "test",
+              "message": "No overload matches this call. Overload 1 of 2, '(name: string | Function, fn?: TestFunction<object> | undefined, options?: number | undefined): void', gave the following error. Argument of type '{ timeout: number; retry: number; }' is not assignable to parameter of type 'number'. Overload 2 of 2, '(name: string | Function, options?: TestCollectorOptions | undefined, fn?: TestFunction<object> | undefined): void', gave the following error. Type '() => void' has no properties in common with type ' …",
+              "snippet": "test(",
+              "declPkg": "vitest",
+              "decl": "test: TestAPI"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    },
+    {
+      "run": "with-card-1",
+      "results": [
+        {
+          "task": "config-basic",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-basic",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-basic",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "mock-module",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "mock-module",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "mock-module",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "timers",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "timers",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "timers",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "spies",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "spies",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "spies",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:toThrowError",
+              "code": 6385,
+              "name": "toThrowError",
+              "message": "'toThrowError' is deprecated.",
+              "snippet": "expect(() => parsePort('abc')).toThrowError(/Invalid port: abc/)",
+              "declPkg": "vitest",
+              "decl": "@deprecated Use `toThrow` instead\ntoThrowError: (expected?: any) => R;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:toThrowError",
+              "code": 6385,
+              "name": "toThrowError",
+              "message": "'toThrowError' is deprecated.",
+              "snippet": "expect(() => parseVersion(\"1.2\")).toThrowError(/Invalid version/);",
+              "declPkg": "vitest",
+              "decl": "@deprecated Use `toThrow` instead\ntoThrowError: (expected?: any) => R;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2339:returnType@expectTypeOf(normalizeTitle).returnType. …",
+              "code": 2339,
+              "name": "returnType",
+              "message": "Property 'returnType' does not exist on type 'PositiveExpectTypeOf<(input: string) => string>'.",
+              "snippet": "expectTypeOf(normalizeTitle).returnType.toEqualTypeOf<string>();",
+              "declPkg": "expect-type",
+              "decl": "export interface PositiveExpectTypeOf<Actual> extends BaseExpectTypeOf<Actual, { positive: true; branded: false; }> { /** * Similar to jest's `expect(...).toMatchObject(...)` but for types. * Deeply \"picks\" the properties of the actual type based on the expected type, then performs a strict check to make sure the types match `Expected`. * * **Note**: optional properties on the {@linkcode Expected | expected type} are not allowed to be missing on the {@linkcode Actual | actual type}. * * @example * ```ts * expectTypeOf({ a: 1, b: 1 }).toMatchObjectType<{ a: number }>() * * expectTypeOf({ a: 1,  …"
+            }
+          ],
+          "unrelated": 0
+        }
+      ]
+    },
+    {
+      "run": "with-card-2",
+      "results": [
+        {
+          "task": "config-basic",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-basic",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-basic",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-isolation",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-browser",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "mock-module",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "mock-module",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "mock-module",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "timers",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "timers",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "timers",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "spies",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "spies",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "spies",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "async-assert",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "table-types",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}

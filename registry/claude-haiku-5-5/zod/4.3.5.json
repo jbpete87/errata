@@ -1,0 +1,767 @@
+{
+  "package": "zod",
+  "version": "4.3.5",
+  "model": "claude-haiku-5-5",
+  "measured": "2026-10-22",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 20,
+      "clean": 13,
+      "errors": 7,
+      "deprecations": 21,
+      "warnings": 0,
+      "buildFailures": 0
+    },
+    {
+      "label": "with-card-1",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 24,
+      "errors": 0,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    }
+  ],
+  "card": [
+    "`required_error` and `invalid_type_error` do not exist on `z.string()`. Pass `error` (a string or error map) or `message` instead.",
+    "`z.string().email()` is deprecated. Use top-level `z.email()`, whose params still accept `message`.",
+    "`z.string().url()` is deprecated. Use top-level `z.url()`.",
+    "`z.string().uuid()` is deprecated. Use top-level `z.uuid()`.",
+    "`z.string().datetime()` is deprecated. Use `z.iso.datetime()`.",
+    "`z.nativeEnum(X)` is deprecated. Use `z.enum(X)` with the enum object.",
+    "`.passthrough()` is deprecated. Use `z.looseObject()` or `.loose()`.",
+    "`ZodString` has no `.ip()` method in zod 4.3.5. The evidence shows no replacement, so do not call it."
+  ],
+  "lines": [
+    {
+      "text": "`required_error` and `invalid_type_error` do not exist on `z.string()`. Pass `error` (a string or error map) or `message` instead.",
+      "keys": [
+        "error:2769:required_error@z .string",
+        "error:2769:required_error@z.string"
+      ],
+      "foundIn": 0,
+      "before": 4,
+      "after": 0
+    },
+    {
+      "text": "`z.string().email()` is deprecated. Use top-level `z.email()`, whose params still accept `message`.",
+      "keys": [
+        "deprecated:email"
+      ],
+      "foundIn": 0,
+      "before": 5,
+      "after": 0
+    },
+    {
+      "text": "`z.string().url()` is deprecated. Use top-level `z.url()`.",
+      "keys": [
+        "deprecated:url"
+      ],
+      "foundIn": 0,
+      "before": 2,
+      "after": 0
+    },
+    {
+      "text": "`z.string().uuid()` is deprecated. Use top-level `z.uuid()`.",
+      "keys": [
+        "deprecated:uuid"
+      ],
+      "foundIn": 0,
+      "before": 5,
+      "after": 0
+    },
+    {
+      "text": "`z.string().datetime()` is deprecated. Use `z.iso.datetime()`.",
+      "keys": [
+        "deprecated:datetime"
+      ],
+      "foundIn": 0,
+      "before": 3,
+      "after": 0
+    },
+    {
+      "text": "`z.nativeEnum(X)` is deprecated. Use `z.enum(X)` with the enum object.",
+      "keys": [
+        "deprecated:nativeEnum"
+      ],
+      "foundIn": 0,
+      "before": 3,
+      "after": 0
+    },
+    {
+      "text": "`.passthrough()` is deprecated. Use `z.looseObject()` or `.loose()`.",
+      "keys": [
+        "deprecated:passthrough"
+      ],
+      "foundIn": 0,
+      "before": 3,
+      "after": 0
+    },
+    {
+      "text": "`ZodString` has no `.ip()` method in zod 4.3.5. The evidence shows no replacement, so do not call it.",
+      "keys": [
+        "error:2339:ip@z.string().ip"
+      ],
+      "foundIn": 0,
+      "before": 2,
+      "after": 0
+    }
+  ],
+  "minCount": 2,
+  "rare": [
+    {
+      "key": "error:2339:ip@z .string() .ip",
+      "count": 1,
+      "message": "Property 'ip' does not exist on type 'ZodString'.",
+      "snippet": ".ip({ version: \"v4\" })"
+    }
+  ],
+  "remaining": [],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "signup",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2769:required_error@z .string",
+              "code": 2769,
+              "name": "required_error",
+              "message": "No overload matches this call. Overload 1 of 2, '(params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidType<unknown>> | undefined; message?: string | undefined; } | undefined): ZodString', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type '{ error?: string | $ZodErrorMap<$ZodIssueInvalidType<unknown>> | undefined; message?: string | undefined; }'. Overload 2 of 2, '(params?: string | { error?: string | $ZodErrorMa …",
+              "snippet": ".string({ required_error: \"Email is required\", invalid_type_error: \"Email must be a string\" })",
+              "declPkg": "zod",
+              "decl": "{ [k in keyof T]: T[k]; }"
+            },
+            {
+              "kind": "error",
+              "key": "error:2769:required_error@z.string",
+              "code": 2769,
+              "name": "required_error",
+              "message": "No overload matches this call. Overload 1 of 2, '(params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidType<unknown>> | undefined; message?: string | undefined; } | undefined): ZodString', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type '{ error?: string | $ZodErrorMap<$ZodIssueInvalidType<unknown>> | undefined; message?: string | undefined; }'. Overload 2 of 2, '(params?: string | { error?: string | $ZodErrorMa …",
+              "snippet": "confirmPassword: z.string({ required_error: \"Please confirm your password\" }),",
+              "declPkg": "zod",
+              "decl": "{ [k in keyof T]: T[k]; }"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".email({ message: \"Please enter a valid email address\" }),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".url({ message: \"Please enter a valid website URL\" })",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:uuid",
+              "code": 6385,
+              "name": "uuid",
+              "message": "'(params?: string | { abort?: boolean | undefined; version?: \"v1\" | \"v2\" | \"v3\" | \"v4\" | \"v5\" | \"v6\" | \"v7\" | \"v8\" | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".uuid({ message: \"Invite code must be a valid UUID\" }),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.uuid()` instead.\nuuid(params?: string | core.$ZodCheckUUIDParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "signup",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "signup",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2769:required_error@z .string",
+              "code": 2769,
+              "name": "required_error",
+              "message": "No overload matches this call. Overload 1 of 2, '(params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidType<unknown>> | undefined; message?: string | undefined; } | undefined): ZodString', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type '{ error?: string | $ZodErrorMap<$ZodIssueInvalidType<unknown>> | undefined; message?: string | undefined; }'. Overload 2 of 2, '(params?: string | { error?: string | $ZodErrorMa …",
+              "snippet": ".string({ required_error: \"Email is required\", invalid_type_error: \"Email must be a string\" })",
+              "declPkg": "zod",
+              "decl": "{ [k in keyof T]: T[k]; }"
+            },
+            {
+              "kind": "error",
+              "key": "error:2769:required_error@z.string",
+              "code": 2769,
+              "name": "required_error",
+              "message": "No overload matches this call. Overload 1 of 2, '(params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidType<unknown>> | undefined; message?: string | undefined; } | undefined): ZodString', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type '{ error?: string | $ZodErrorMap<$ZodIssueInvalidType<unknown>> | undefined; message?: string | undefined; }'. Overload 2 of 2, '(params?: string | { error?: string | $ZodErrorMa …",
+              "snippet": "confirmPassword: z.string({ required_error: \"Please confirm your password\" }),",
+              "declPkg": "zod",
+              "decl": "{ [k in keyof T]: T[k]; }"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".email({ message: \"Please enter a valid email address\" }),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".url({ message: \"Please enter a valid website URL\" })",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:uuid",
+              "code": 6385,
+              "name": "uuid",
+              "message": "'(params?: string | { abort?: boolean | undefined; version?: \"v1\" | \"v2\" | \"v3\" | \"v4\" | \"v5\" | \"v6\" | \"v7\" | \"v8\" | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".uuid({ message: \"Invite code must be a valid UUID\" }),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.uuid()` instead.\nuuid(params?: string | core.$ZodCheckUUIDParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "field-errors",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "field-errors",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "field-errors",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "enums",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:nativeEnum",
+              "code": 6387,
+              "name": "nativeEnum",
+              "message": "The signature '(entries: any, params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidValue<unknown>> | undefined; message?: string | undefined; } | undefined): ZodEnum<...>' of 'z.nativeEnum' is deprecated.",
+              "snippet": "export const roleSchema = z.nativeEnum(Role);",
+              "declPkg": "zod",
+              "decl": "@deprecated This API has been merged into `z.enum()`. Use `z.enum()` instead.\n\n```ts\nenum Colors { red, green, blue }\nz.enum(Colors);\n```\nexport declare function nativeEnum<T extends util.EnumLike>(entries: T, params?: string | core.$ZodEnumParams): ZodEnum<T>;"
+            }
+          ],
+          "unrelated": 1
+        },
+        {
+          "task": "enums",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:nativeEnum",
+              "code": 6387,
+              "name": "nativeEnum",
+              "message": "The signature '(entries: typeof Role, params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidValue<unknown>> | undefined; message?: string | undefined; } | undefined): ZodEnum<...>' of 'z.nativeEnum' is deprecated.",
+              "snippet": "export const roleSchema = z.nativeEnum(Role);",
+              "declPkg": "zod",
+              "decl": "@deprecated This API has been merged into `z.enum()`. Use `z.enum()` instead.\n\n```ts\nenum Colors { red, green, blue }\nz.enum(Colors);\n```\nexport declare function nativeEnum<T extends util.EnumLike>(entries: T, params?: string | core.$ZodEnumParams): ZodEnum<T>;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "enums",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:nativeEnum",
+              "code": 6387,
+              "name": "nativeEnum",
+              "message": "The signature '(entries: any, params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidValue<unknown>> | undefined; message?: string | undefined; } | undefined): ZodEnum<...>' of 'z.nativeEnum' is deprecated.",
+              "snippet": "export const roleSchema = z.nativeEnum(Role);",
+              "declPkg": "zod",
+              "decl": "@deprecated This API has been merged into `z.enum()`. Use `z.enum()` instead.\n\n```ts\nenum Colors { red, green, blue }\nz.enum(Colors);\n```\nexport declare function nativeEnum<T extends util.EnumLike>(entries: T, params?: string | core.$ZodEnumParams): ZodEnum<T>;"
+            }
+          ],
+          "unrelated": 1
+        },
+        {
+          "task": "union-transform",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "union-transform",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "union-transform",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "object-ops",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:uuid",
+              "code": 6385,
+              "name": "uuid",
+              "message": "'(params?: string | { abort?: boolean | undefined; version?: \"v1\" | \"v2\" | \"v3\" | \"v4\" | \"v5\" | \"v6\" | \"v7\" | \"v8\" | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "id: z.string().uuid(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.uuid()` instead.\nuuid(params?: string | core.$ZodCheckUUIDParams): this;"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "email: z.string().email(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:passthrough",
+              "code": 6387,
+              "name": "passthrough",
+              "message": "The signature '(): ZodObject<{ id: ZodString; email: ZodString; name: ZodString; age: ZodOptional<ZodNumber>; }, $loose>' of 'baseUserSchema.passthrough' is deprecated.",
+              "snippet": "export const passthroughUserSchema = baseUserSchema.passthrough();",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.looseObject()` or `.loose()` instead.\npassthrough(): ZodObject<Shape, core.$loose>;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "object-ops",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:uuid",
+              "code": 6385,
+              "name": "uuid",
+              "message": "'(params?: string | { abort?: boolean | undefined; version?: \"v1\" | \"v2\" | \"v3\" | \"v4\" | \"v5\" | \"v6\" | \"v7\" | \"v8\" | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "id: z.string().uuid(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.uuid()` instead.\nuuid(params?: string | core.$ZodCheckUUIDParams): this;"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "email: z.string().email(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:passthrough",
+              "code": 6387,
+              "name": "passthrough",
+              "message": "The signature '(): ZodObject<{ id: ZodString; email: ZodString; name: ZodString; age: ZodOptional<ZodNumber>; }, $loose>' of 'userSchema.passthrough' is deprecated.",
+              "snippet": "export const passthroughUserSchema = userSchema.passthrough();",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.looseObject()` or `.loose()` instead.\npassthrough(): ZodObject<Shape, core.$loose>;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "object-ops",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:uuid",
+              "code": 6385,
+              "name": "uuid",
+              "message": "'(params?: string | { abort?: boolean | undefined; version?: \"v1\" | \"v2\" | \"v3\" | \"v4\" | \"v5\" | \"v6\" | \"v7\" | \"v8\" | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "id: z.string().uuid(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.uuid()` instead.\nuuid(params?: string | core.$ZodCheckUUIDParams): this;"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "email: z.string().email(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:passthrough",
+              "code": 6387,
+              "name": "passthrough",
+              "message": "The signature '(): ZodObject<{ id: ZodString; email: ZodString; name: ZodString; age: ZodOptional<ZodNumber>; }, $loose>' of 'baseUserSchema.passthrough' is deprecated.",
+              "snippet": "export const passthroughUserSchema = baseUserSchema.passthrough();",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.looseObject()` or `.loose()` instead.\npassthrough(): ZodObject<Shape, core.$loose>;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "messages",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "messages",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "messages",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "coerce-formats",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:datetime",
+              "code": 6385,
+              "name": "datetime",
+              "message": "'(params?: string | { abort?: boolean | undefined; precision?: number | null | undefined; offset?: boolean | undefined; local?: boolean | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".datetime({ offset: true })",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.iso.datetime()` instead.\ndatetime(params?: string | core.$ZodCheckISODateTimeParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "coerce-formats",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2339:ip@z .string() .ip",
+              "code": 2339,
+              "name": "ip",
+              "message": "Property 'ip' does not exist on type 'ZodString'.",
+              "snippet": ".ip({ version: \"v4\" })",
+              "declPkg": "zod",
+              "decl": "export interface ZodString extends _ZodString<core.$ZodStringInternals<string>> { /** @deprecated Use `z.email()` instead. */ email(params?: string | core.$ZodCheckEmailParams): this; /** @deprecated Use `z.url()` instead. */ url(params?: string | core.$ZodCheckURLParams): this; /** @deprecated Use `z.jwt()` instead. */ jwt(params?: string | core.$ZodCheckJWTParams): this; /** @deprecated Use `z.emoji()` instead. */ emoji(params?: string | core.$ZodCheckEmojiParams): this; /** @deprecated Use `z.guid()` instead. */ guid(params?: string | core.$ZodCheckGUIDParams): this; /** @deprecated Use `z. …"
+            },
+            {
+              "kind": "error",
+              "key": "error:2339:ip@z.string().ip",
+              "code": 2339,
+              "name": "ip",
+              "message": "Property 'ip' does not exist on type 'ZodString'.",
+              "snippet": ".or(z.string().ip({ version: \"v6\" }));",
+              "declPkg": "zod",
+              "decl": "export interface ZodString extends _ZodString<core.$ZodStringInternals<string>> { /** @deprecated Use `z.email()` instead. */ email(params?: string | core.$ZodCheckEmailParams): this; /** @deprecated Use `z.url()` instead. */ url(params?: string | core.$ZodCheckURLParams): this; /** @deprecated Use `z.jwt()` instead. */ jwt(params?: string | core.$ZodCheckJWTParams): this; /** @deprecated Use `z.emoji()` instead. */ emoji(params?: string | core.$ZodCheckEmojiParams): this; /** @deprecated Use `z.guid()` instead. */ guid(params?: string | core.$ZodCheckGUIDParams): this; /** @deprecated Use `z. …"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:datetime",
+              "code": 6385,
+              "name": "datetime",
+              "message": "'(params?: string | { abort?: boolean | undefined; precision?: number | null | undefined; offset?: boolean | undefined; local?: boolean | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".datetime()",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.iso.datetime()` instead.\ndatetime(params?: string | core.$ZodCheckISODateTimeParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "coerce-formats",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2339:ip@z.string().ip",
+              "code": 2339,
+              "name": "ip",
+              "message": "Property 'ip' does not exist on type 'ZodString'.",
+              "snippet": "(value) => z.string().ip({ version: \"v4\" }).safeParse(value).success ||",
+              "declPkg": "zod",
+              "decl": "export interface ZodString extends _ZodString<core.$ZodStringInternals<string>> { /** @deprecated Use `z.email()` instead. */ email(params?: string | core.$ZodCheckEmailParams): this; /** @deprecated Use `z.url()` instead. */ url(params?: string | core.$ZodCheckURLParams): this; /** @deprecated Use `z.jwt()` instead. */ jwt(params?: string | core.$ZodCheckJWTParams): this; /** @deprecated Use `z.emoji()` instead. */ emoji(params?: string | core.$ZodCheckEmojiParams): this; /** @deprecated Use `z.guid()` instead. */ guid(params?: string | core.$ZodCheckGUIDParams): this; /** @deprecated Use `z. …"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:datetime",
+              "code": 6385,
+              "name": "datetime",
+              "message": "'(params?: string | { abort?: boolean | undefined; precision?: number | null | undefined; offset?: boolean | undefined; local?: boolean | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".datetime({ offset: true, message: \"since must be an ISO 8601 date-time\" })",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.iso.datetime()` instead.\ndatetime(params?: string | core.$ZodCheckISODateTimeParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "advanced",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "advanced",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "advanced",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    },
+    {
+      "run": "with-card-1",
+      "results": [
+        {
+          "task": "signup",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "signup",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "signup",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "field-errors",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "field-errors",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "field-errors",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "enums",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "enums",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "enums",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "union-transform",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "union-transform",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "union-transform",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "object-ops",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "object-ops",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "object-ops",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "messages",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "messages",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "messages",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "coerce-formats",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "coerce-formats",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "coerce-formats",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "advanced",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "advanced",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "advanced",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}

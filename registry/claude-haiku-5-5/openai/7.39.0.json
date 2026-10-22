@@ -1,0 +1,453 @@
+{
+  "package": "openai",
+  "version": "7.39.0",
+  "model": "claude-haiku-5-5",
+  "measured": "2026-10-22",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 22,
+      "clean": 22,
+      "errors": 4,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    },
+    {
+      "label": "with-card-1",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 24,
+      "errors": 0,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    }
+  ],
+  "card": [
+    "APIError has no 'request_id' property; use 'requestID' (compiler suggestion, declaration truncated). Keep 'status' and 'message' as written."
+  ],
+  "lines": [
+    {
+      "text": "APIError has no 'request_id' property; use 'requestID' (compiler suggestion, declaration truncated). Keep 'status' and 'message' as written.",
+      "keys": [
+        "error:2551:request_id@console.error"
+      ],
+      "foundIn": 0,
+      "before": 2,
+      "after": 0
+    }
+  ],
+  "minCount": 2,
+  "rare": [
+    {
+      "key": "error:7052:err",
+      "count": 1,
+      "message": "Element implicitly has an 'any' type because type 'Headers' has no index signature. Did you mean to call 'err.headers.get'?",
+      "snippet": "const retryAfter = err.headers?.[\"retry-after\"];"
+    },
+    {
+      "key": "error:2551:request_id@console.warn",
+      "count": 1,
+      "message": "Property 'request_id' does not exist on type 'RateLimitError'. Did you mean 'requestID'?",
+      "snippet": "`Rate limited (status=${err.status} request_id=${err.request_id}); retrying in ${Math.round(delay)}ms (attempt ${attempt + 2}/${MAX_ATTEMPTS})`,"
+    }
+  ],
+  "remaining": [],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "chat",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tools",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tools",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tools",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "batch",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "batch",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "batch",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "media",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "media",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "media",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "errors",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2551:request_id@console.error",
+              "code": 2551,
+              "name": "request_id",
+              "message": "Property 'request_id' does not exist on type 'APIError<any, any, any>'. Did you mean 'requestID'?",
+              "snippet": "`OpenAI API error: status=${err.status ?? \"unknown\"} request_id=${err.request_id ?? \"unknown\"} message=${err.message}`,",
+              "declPkg": "openai",
+              "decl": "export declare class APIError<TStatus extends number | undefined = number | undefined, THeaders extends Headers | undefined = Headers | undefined, TError extends Object | undefined = Object | undefined> extends OpenAIError { /** HTTP status for the response that caused the error */ readonly status: TStatus; /** HTTP headers for the response that caused the error */ readonly headers: THeaders; /** JSON body of the response that caused the error */ readonly error: TError; readonly code: string | null | undefined; readonly param: string | null | undefined; readonly type: string | undefined; reado …"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "errors",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "errors",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:7052:err",
+              "code": 7052,
+              "name": "err",
+              "message": "Element implicitly has an 'any' type because type 'Headers' has no index signature. Did you mean to call 'err.headers.get'?",
+              "snippet": "const retryAfter = err.headers?.[\"retry-after\"];",
+              "declPkg": "openai",
+              "decl": "readonly headers: THeaders;"
+            },
+            {
+              "kind": "error",
+              "key": "error:2551:request_id@console.error",
+              "code": 2551,
+              "name": "request_id",
+              "message": "Property 'request_id' does not exist on type 'RateLimitError'. Did you mean 'requestID'?",
+              "snippet": "`Rate limit retries exhausted: status=${err.status} request_id=${err.request_id}`,",
+              "declPkg": "openai",
+              "decl": "export declare class RateLimitError extends APIError<429, Headers> { }"
+            },
+            {
+              "kind": "error",
+              "key": "error:2551:request_id@console.warn",
+              "code": 2551,
+              "name": "request_id",
+              "message": "Property 'request_id' does not exist on type 'RateLimitError'. Did you mean 'requestID'?",
+              "snippet": "`Rate limited (status=${err.status} request_id=${err.request_id}); retrying in ${Math.round(delay)}ms (attempt ${attempt + 2}/${MAX_ATTEMPTS})`,",
+              "declPkg": "openai",
+              "decl": "export declare class RateLimitError extends APIError<429, Headers> { }"
+            }
+          ],
+          "unrelated": 0
+        }
+      ]
+    },
+    {
+      "run": "with-card-1",
+      "results": [
+        {
+          "task": "chat",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "chat",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "stream",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "structured",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tools",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tools",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "tools",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "embeddings",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "batch",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "batch",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "batch",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "media",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "media",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "media",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "errors",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "errors",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "errors",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}

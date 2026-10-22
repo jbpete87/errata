@@ -1,0 +1,288 @@
+{
+  "package": "react-router",
+  "version": "8.5.0",
+  "model": "claude-haiku-5-5",
+  "measured": "2026-10-22",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 21,
+      "clean": 21,
+      "errors": 3,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    }
+  ],
+  "card": [],
+  "lines": [],
+  "minCount": 2,
+  "rare": [
+    {
+      "key": "error:2724:unstable_RouterContextProvider",
+      "count": 1,
+      "message": "'\"react-router\"' has no exported member named 'unstable_RouterContextProvider'. Did you mean 'RouterContextProvider'?",
+      "snippet": "import { Outlet, createContext, redirect, type unstable_RouterContextProvider } from \"react-router\";"
+    },
+    {
+      "key": "error:2724:createCookieSessionStorage",
+      "count": 1,
+      "message": "'\"@react-router/node\"' has no exported member named 'createCookieSessionStorage'. Did you mean 'createFileSessionStorage'?",
+      "snippet": "import { createCookieSessionStorage } from \"@react-router/node\";"
+    },
+    {
+      "key": "error:2724:ServerMiddlewareFunction",
+      "count": 1,
+      "message": "'\"react-router\"' has no exported member named 'ServerMiddlewareFunction'. Did you mean 'MiddlewareFunction'?",
+      "snippet": "import { Outlet, createContext, redirect, type ServerMiddlewareFunction } from \"react-router\";"
+    }
+  ],
+  "remaining": [
+    {
+      "kind": "error",
+      "key": "error:2724:unstable_RouterContextProvider",
+      "code": 2724,
+      "name": "unstable_RouterContextProvider",
+      "message": "'\"react-router\"' has no exported member named 'unstable_RouterContextProvider'. Did you mean 'RouterContextProvider'?",
+      "snippet": "import { Outlet, createContext, redirect, type unstable_RouterContextProvider } from \"react-router\";",
+      "declPkg": "react-router",
+      "decl": "import from \"react-router\"",
+      "count": 1
+    },
+    {
+      "kind": "error",
+      "key": "error:2724:createCookieSessionStorage",
+      "code": 2724,
+      "name": "createCookieSessionStorage",
+      "message": "'\"@react-router/node\"' has no exported member named 'createCookieSessionStorage'. Did you mean 'createFileSessionStorage'?",
+      "snippet": "import { createCookieSessionStorage } from \"@react-router/node\";",
+      "declPkg": "react-router",
+      "decl": "import from \"@react-router/node\"",
+      "count": 1
+    },
+    {
+      "kind": "error",
+      "key": "error:2724:ServerMiddlewareFunction",
+      "code": 2724,
+      "name": "ServerMiddlewareFunction",
+      "message": "'\"react-router\"' has no exported member named 'ServerMiddlewareFunction'. Did you mean 'MiddlewareFunction'?",
+      "snippet": "import { Outlet, createContext, redirect, type ServerMiddlewareFunction } from \"react-router\";",
+      "declPkg": "react-router",
+      "decl": "import from \"react-router\"",
+      "count": 1
+    }
+  ],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "data-router",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "data-router",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "data-router",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "form-action",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "form-action",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "form-action",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "fetcher",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "fetcher",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "fetcher",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "search-params",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "search-params",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "search-params",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "route-config",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "route-config",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "route-config",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "route-module",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "route-module",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "route-module",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "auth-guard",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2724:unstable_RouterContextProvider",
+              "code": 2724,
+              "name": "unstable_RouterContextProvider",
+              "message": "'\"react-router\"' has no exported member named 'unstable_RouterContextProvider'. Did you mean 'RouterContextProvider'?",
+              "snippet": "import { Outlet, createContext, redirect, type unstable_RouterContextProvider } from \"react-router\";",
+              "declPkg": "react-router",
+              "decl": "import from \"react-router\""
+            }
+          ],
+          "unrelated": 5
+        },
+        {
+          "task": "auth-guard",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2724:createCookieSessionStorage",
+              "code": 2724,
+              "name": "createCookieSessionStorage",
+              "message": "'\"@react-router/node\"' has no exported member named 'createCookieSessionStorage'. Did you mean 'createFileSessionStorage'?",
+              "snippet": "import { createCookieSessionStorage } from \"@react-router/node\";",
+              "declPkg": "react-router",
+              "decl": "import from \"@react-router/node\""
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "auth-guard",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2724:ServerMiddlewareFunction",
+              "code": 2724,
+              "name": "ServerMiddlewareFunction",
+              "message": "'\"react-router\"' has no exported member named 'ServerMiddlewareFunction'. Did you mean 'MiddlewareFunction'?",
+              "snippet": "import { Outlet, createContext, redirect, type ServerMiddlewareFunction } from \"react-router\";",
+              "declPkg": "react-router",
+              "decl": "import from \"react-router\""
+            }
+          ],
+          "unrelated": 4
+        },
+        {
+          "task": "blocker-defer",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 1
+        },
+        {
+          "task": "blocker-defer",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 2
+        },
+        {
+          "task": "blocker-defer",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}

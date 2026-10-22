@@ -1,0 +1,607 @@
+{
+  "package": "next",
+  "version": "16.1.1",
+  "model": "claude-haiku-5-5",
+  "measured": "2026-10-22",
+  "check": "typecheck + @deprecated + `next build --experimental-build-mode compile` warnings",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 22,
+      "clean": 19,
+      "errors": 2,
+      "deprecations": 0,
+      "warnings": 3,
+      "buildFailures": 0
+    },
+    {
+      "label": "with-card-1",
+      "samples": 24,
+      "valid": 24,
+      "passing": 24,
+      "clean": 24,
+      "errors": 0,
+      "deprecations": 0,
+      "warnings": 0,
+      "buildFailures": 0
+    }
+  ],
+  "card": [
+    "The \"middleware\" file convention is deprecated in next@16.1.1; use the \"proxy\" file convention instead.",
+    "revalidateTag takes two arguments: a tag string and a profile of type string | CacheLifeConfig. A single-argument call fails with TS2554."
+  ],
+  "lines": [
+    {
+      "text": "The \"middleware\" file convention is deprecated in next@16.1.1; use the \"proxy\" file convention instead.",
+      "keys": [
+        "build:The \"middleware\" file convention is deprecated. Please use \"proxy\" instead. Learn more: https:<path>"
+      ],
+      "foundIn": 0,
+      "before": 3,
+      "after": 0
+    },
+    {
+      "text": "revalidateTag takes two arguments: a tag string and a profile of type string | CacheLifeConfig. A single-argument call fails with TS2554.",
+      "keys": [
+        "error:2554:revalidateTag"
+      ],
+      "foundIn": 0,
+      "before": 2,
+      "after": 0
+    }
+  ],
+  "minCount": 2,
+  "rare": [],
+  "remaining": [],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "dynamic-page",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "dynamic-page",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "dynamic-page",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "build",
+              "key": "build:The \"middleware\" file convention is deprecated. Please use \"proxy\" instead. Learn more: https:<path>",
+              "code": 0,
+              "name": "The \"middleware\" file convention is deprecated. Please use \"",
+              "message": "The \"middleware\" file convention is deprecated. Please use \"proxy\" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy",
+              "snippet": "answer files: middleware.ts",
+              "declPkg": "next",
+              "decl": "printed by `next build --experimental-build-mode compile`"
+            }
+          ],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "build",
+              "key": "build:The \"middleware\" file convention is deprecated. Please use \"proxy\" instead. Learn more: https:<path>",
+              "code": 0,
+              "name": "The \"middleware\" file convention is deprecated. Please use \"",
+              "message": "The \"middleware\" file convention is deprecated. Please use \"proxy\" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy",
+              "snippet": "answer files: middleware.ts",
+              "declPkg": "next",
+              "decl": "printed by `next build --experimental-build-mode compile`"
+            }
+          ],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "build",
+              "key": "build:The \"middleware\" file convention is deprecated. Please use \"proxy\" instead. Learn more: https:<path>",
+              "code": 0,
+              "name": "The \"middleware\" file convention is deprecated. Please use \"",
+              "message": "The \"middleware\" file convention is deprecated. Please use \"proxy\" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy",
+              "snippet": "answer files: middleware.ts",
+              "declPkg": "next",
+              "decl": "printed by `next build --experimental-build-mode compile`"
+            }
+          ],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2554:revalidateTag",
+              "code": 2554,
+              "name": "revalidateTag",
+              "message": "Expected 2 arguments, but got 1.",
+              "snippet": "revalidateTag(PRODUCTS_TAG);",
+              "declPkg": "next",
+              "decl": "export declare function revalidateTag(tag: string, profile: string | CacheLifeConfig): undefined;"
+            }
+          ],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2554:revalidateTag",
+              "code": 2554,
+              "name": "revalidateTag",
+              "message": "Expected 2 arguments, but got 1.",
+              "snippet": "revalidateTag(PRODUCTS_CACHE_TAG);",
+              "declPkg": "next",
+              "decl": "export declare function revalidateTag(tag: string, profile: string | CacheLifeConfig): undefined;"
+            }
+          ],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        }
+      ]
+    },
+    {
+      "run": "with-card-1",
+      "results": [
+        {
+          "task": "dynamic-page",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "dynamic-page",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "dynamic-page",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "route-handler",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "intercept",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "server-action",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "config",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "caching",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "metadata-files",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        },
+        {
+          "task": "client-nav",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0,
+          "build": {
+            "ok": true
+          }
+        }
+      ]
+    }
+  ]
+}

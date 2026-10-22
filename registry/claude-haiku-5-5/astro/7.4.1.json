@@ -1,0 +1,707 @@
+{
+  "package": "astro",
+  "version": "7.4.1",
+  "model": "claude-haiku-5-5",
+  "measured": "2026-10-22",
+  "check": "typecheck + @deprecated (no execution)",
+  "tasks": 8,
+  "samplesPerTask": 3,
+  "runs": [
+    {
+      "label": "baseline",
+      "samples": 24,
+      "valid": 24,
+      "passing": 19,
+      "clean": 14,
+      "errors": 5,
+      "deprecations": 16,
+      "warnings": 0,
+      "buildFailures": 0
+    },
+    {
+      "label": "with-card-1",
+      "samples": 24,
+      "valid": 24,
+      "passing": 23,
+      "clean": 22,
+      "errors": 2,
+      "deprecations": 1,
+      "warnings": 0,
+      "buildFailures": 0
+    }
+  ],
+  "card": [
+    "Deprecated: importing `z` from 'astro:content'. Import `z` from 'astro/zod' instead.",
+    "Deprecated: `z.string().url()` and `z.string().email()`. Use the top-level `z.url()` and `z.email()` instead.",
+    "`required_error` is not a valid option for `z.string()`. Its params type `$ZodStringParams` has no such property; drop it and use the accepted params shape."
+  ],
+  "lines": [
+    {
+      "text": "Deprecated: importing `z` from 'astro:content'. Import `z` from 'astro/zod' instead.",
+      "keys": [
+        "deprecated:z"
+      ],
+      "foundIn": 0,
+      "before": 6,
+      "after": 1
+    },
+    {
+      "text": "Deprecated: `z.string().url()` and `z.string().email()`. Use the top-level `z.url()` and `z.email()` instead.",
+      "keys": [
+        "deprecated:url",
+        "deprecated:email"
+      ],
+      "foundIn": 0,
+      "before": 10,
+      "after": 0
+    },
+    {
+      "text": "`required_error` is not a valid option for `z.string()`. Its params type `$ZodStringParams` has no such property; drop it and use the accepted params shape.",
+      "keys": [
+        "error:2769:required_error@z .string"
+      ],
+      "foundIn": 0,
+      "before": 3,
+      "after": 0
+    }
+  ],
+  "minCount": 2,
+  "rare": [
+    {
+      "key": "error:2740:data@parseData",
+      "count": 1,
+      "message": "Type 'Record<string, unknown>' is missing the following properties from type '{ id: string; name: string; slug: string; description: string; price: number; currency: string; inStock: boolean; tags: string[]; image?: string | undefined; updatedAt?: Date | undefined; }': id, name, slug, description, and 4 more.",
+      "snippet": "data = await parseData<Product>({ id, data: raw as Record<string, unknown> });"
+    },
+    {
+      "key": "error:2339:addVirtualImports",
+      "count": 1,
+      "message": "Property 'addVirtualImports' does not exist on type '{ config: AstroConfig; command: \"dev\" | \"build\" | \"preview\" | \"sync\"; isRestart: boolean; updateConfig: (newConfig: DeepPartial<AstroConfig>) => AstroConfig; ... 8 more ...; logger: AstroIntegrationLogger; }'.",
+      "snippet": "'astro:config:setup': ({ injectRoute, injectScript, addVirtualImports }) => {"
+    }
+  ],
+  "remaining": [
+    {
+      "kind": "error",
+      "key": "error:2322:data@parseData",
+      "code": 2322,
+      "name": "data",
+      "message": "Type 'unknown' is not assignable to type 'Record<string, unknown>'.",
+      "snippet": "const data = await parseData({ id: candidateId, data: raw });",
+      "declPkg": "astro",
+      "decl": "export interface ParseDataOptions<TData extends Record<string, unknown>> { /** The ID of the entry. Unique per collection */ id: string; /** The raw, unvalidated data of the entry */ data: TData; /** An optional file path, where the entry represents a local file. */ filePath?: string; }",
+      "count": 1
+    },
+    {
+      "kind": "error",
+      "key": "error:2322:id@store.set",
+      "code": 2322,
+      "name": "id",
+      "message": "Type 'unknown' is not assignable to type 'string'.",
+      "snippet": "id: data.id,",
+      "declPkg": "astro",
+      "decl": "export interface DataEntry<TData extends Record<string, unknown> = Record<string, unknown>> { /** The ID of the entry. Unique per collection. */ id: string; /** The parsed entry data */ data: TData; /** The file path of the content, if applicable. Relative to the site root. */ filePath?: string; /** The raw body of the content, if applicable. */ body?: string; /** An optional content digest, to check if the content has changed. */ digest?: number | string; /** The rendered content of the entry, if applicable. */ rendered?: RenderedContent; /** * If an entry is a deferred, its rendering phase i …",
+      "count": 1
+    }
+  ],
+  "samples": [
+    {
+      "run": "baseline",
+      "results": [
+        {
+          "task": "config",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-env-i18n",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-env-i18n",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-env-i18n",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "endpoint",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "endpoint",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "endpoint",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "middleware",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "middleware",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "middleware",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "content",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:z",
+              "code": 6385,
+              "name": "z",
+              "message": "'z' is deprecated.",
+              "snippet": "import { defineCollection, z } from 'astro:content';",
+              "declPkg": "astro",
+              "decl": "@deprecated `import { z } from 'astro:content'` is deprecated and will be removed\nin Astro 8. Use `import { z } from 'astro/zod'` instead.\nz = zod.z"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "url: z.string().url().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "content",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:z",
+              "code": 6385,
+              "name": "z",
+              "message": "'z' is deprecated.",
+              "snippet": "import { defineCollection, z } from 'astro:content';",
+              "declPkg": "astro",
+              "decl": "@deprecated `import { z } from 'astro:content'` is deprecated and will be removed\nin Astro 8. Use `import { z } from 'astro/zod'` instead.\nz = zod.z"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "avatar: z.string().url().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "content",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:z",
+              "code": 6385,
+              "name": "z",
+              "message": "'z' is deprecated.",
+              "snippet": "import { defineCollection, z } from 'astro:content';",
+              "declPkg": "astro",
+              "decl": "@deprecated `import { z } from 'astro:content'` is deprecated and will be removed\nin Astro 8. Use `import { z } from 'astro/zod'` instead.\nz = zod.z"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "email: z.string().email().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "avatar: z.string().url().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "loader",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { pattern?: RegExp | undefined; abort?: boolean | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "image: z.string().url().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "loader",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2740:data@parseData",
+              "code": 2740,
+              "name": "data",
+              "message": "Type 'Record<string, unknown>' is missing the following properties from type '{ id: string; name: string; slug: string; description: string; price: number; currency: string; inStock: boolean; tags: string[]; image?: string | undefined; updatedAt?: Date | undefined; }': id, name, slug, description, and 4 more.",
+              "snippet": "data = await parseData<Product>({ id, data: raw as Record<string, unknown> });",
+              "declPkg": "astro",
+              "decl": "export interface ParseDataOptions<TData extends Record<string, unknown>> { /** The ID of the entry. Unique per collection */ id: string; /** The raw, unvalidated data of the entry */ data: TData; /** An optional file path, where the entry represents a local file. */ filePath?: string; }"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "image: z.string().url().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "loader",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:url",
+              "code": 6385,
+              "name": "url",
+              "message": "'(params?: string | { pattern?: RegExp | undefined; abort?: boolean | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; normalize?: boolean | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": "image: z.string().url().optional(),",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.url()` instead.\nurl(params?: string | core.$ZodCheckURLParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "integration",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "integration",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2339:addVirtualImports",
+              "code": 2339,
+              "name": "addVirtualImports",
+              "message": "Property 'addVirtualImports' does not exist on type '{ config: AstroConfig; command: \"dev\" | \"build\" | \"preview\" | \"sync\"; isRestart: boolean; updateConfig: (newConfig: DeepPartial<AstroConfig>) => AstroConfig; ... 8 more ...; logger: AstroIntegrationLogger; }'.",
+              "snippet": "'astro:config:setup': ({ injectRoute, injectScript, addVirtualImports }) => {",
+              "declPkg": "astro",
+              "decl": "{ config: AstroConfig; command: 'dev' | 'build' | 'preview' | 'sync'; isRestart: boolean; updateConfig: (newConfig: DeepPartial<AstroConfig>) => AstroConfig; addRenderer: (renderer: AstroRenderer) => void; addWatchFile: (path: URL | string) => void; injectScript: (stage: InjectedScriptStage, content: string) => void; injectRoute: (injectRoute: InjectedRoute) => void; addClientDirective: (directive: ClientDirectiveConfig) => void; addDevToolbarApp: (entrypoint: DevToolbarAppEntry) => void; addMiddleware: (mid: AstroIntegrationMiddleware) => void; createCodegenDir: () => URL; logger: AstroIntegr …"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "integration",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "actions",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2769:required_error@z .string",
+              "code": 2769,
+              "name": "required_error",
+              "message": "No overload matches this call. Overload 1 of 2, '(params?: string | $ZodStringParams | undefined): ZodString', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type '$ZodStringParams'. Overload 2 of 2, '(params?: string | $ZodStringParams | undefined): $ZodType<string, string, $ZodTypeInternals<string, string>>', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type …",
+              "snippet": ".string({ required_error: 'Email is required.' })",
+              "declPkg": "zod",
+              "decl": "export type $ZodStringParams = TypeParams<schemas.$ZodString<string>, \"coerce\"> & { checks?: readonly checks.$ZodCheck<string>[]; };"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:z",
+              "code": 6385,
+              "name": "z",
+              "message": "'z' is deprecated.",
+              "snippet": "import { z } from 'astro:schema';",
+              "declPkg": "astro",
+              "decl": "@deprecated `import { z } from 'astro:schema'` is deprecated and will be removed\nin Astro 8. Use `import { z } from 'astro/zod'` instead.\nz = zod.z"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".email('Please enter a valid email address.')",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "actions",
+          "sample": 1,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2769:required_error@z .string",
+              "code": 2769,
+              "name": "required_error",
+              "message": "No overload matches this call. Overload 1 of 2, '(params?: string | $ZodStringParams | undefined): ZodString', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type '$ZodStringParams'. Overload 2 of 2, '(params?: string | $ZodStringParams | undefined): $ZodType<string, string, $ZodTypeInternals<string, string>>', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type …",
+              "snippet": ".string({ required_error: 'Email is required.' })",
+              "declPkg": "zod",
+              "decl": "export type $ZodStringParams = TypeParams<schemas.$ZodString<string>, \"coerce\"> & { checks?: readonly checks.$ZodCheck<string>[]; };"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:z",
+              "code": 6385,
+              "name": "z",
+              "message": "'z' is deprecated.",
+              "snippet": "import { z } from 'astro:schema';",
+              "declPkg": "astro",
+              "decl": "@deprecated `import { z } from 'astro:schema'` is deprecated and will be removed\nin Astro 8. Use `import { z } from 'astro/zod'` instead.\nz = zod.z"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".email('Please enter a valid email address.')",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            }
+          ],
+          "unrelated": 1
+        },
+        {
+          "task": "actions",
+          "sample": 2,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2769:required_error@z .string",
+              "code": 2769,
+              "name": "required_error",
+              "message": "No overload matches this call. Overload 1 of 2, '(params?: string | $ZodStringParams | undefined): ZodString', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type '$ZodStringParams'. Overload 2 of 2, '(params?: string | $ZodStringParams | undefined): $ZodType<string, string, $ZodTypeInternals<string, string>>', gave the following error. Object literal may only specify known properties, and 'required_error' does not exist in type …",
+              "snippet": ".string({ required_error: 'Email is required.' })",
+              "declPkg": "zod",
+              "decl": "export type $ZodStringParams = TypeParams<schemas.$ZodString<string>, \"coerce\"> & { checks?: readonly checks.$ZodCheck<string>[]; };"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:z",
+              "code": 6385,
+              "name": "z",
+              "message": "'z' is deprecated.",
+              "snippet": "import { z } from 'astro:schema';",
+              "declPkg": "astro",
+              "decl": "@deprecated `import { z } from 'astro:schema'` is deprecated and will be removed\nin Astro 8. Use `import { z } from 'astro/zod'` instead.\nz = zod.z"
+            },
+            {
+              "kind": "deprecated",
+              "key": "deprecated:email",
+              "code": 6385,
+              "name": "email",
+              "message": "'(params?: string | { abort?: boolean | undefined; pattern?: RegExp | undefined; error?: string | $ZodErrorMap<$ZodIssueInvalidStringFormat> | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.",
+              "snippet": ".email({ message: 'Please enter a valid email address.' })",
+              "declPkg": "zod",
+              "decl": "@deprecated Use `z.email()` instead.\nemail(params?: string | core.$ZodCheckEmailParams): this;"
+            }
+          ],
+          "unrelated": 0
+        }
+      ]
+    },
+    {
+      "run": "with-card-1",
+      "results": [
+        {
+          "task": "config",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-env-i18n",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-env-i18n",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "config-env-i18n",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "endpoint",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "endpoint",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "endpoint",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "middleware",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "middleware",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "middleware",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "content",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "deprecated",
+              "key": "deprecated:z",
+              "code": 6385,
+              "name": "z",
+              "message": "'z' is deprecated.",
+              "snippet": "import { defineCollection, z } from 'astro:content';",
+              "declPkg": "astro",
+              "decl": "@deprecated `import { z } from 'astro:content'` is deprecated and will be removed\nin Astro 8. Use `import { z } from 'astro/zod'` instead.\nz = zod.z"
+            }
+          ],
+          "unrelated": 0
+        },
+        {
+          "task": "content",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "content",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "loader",
+          "sample": 0,
+          "valid": true,
+          "findings": [
+            {
+              "kind": "error",
+              "key": "error:2322:data@parseData",
+              "code": 2322,
+              "name": "data",
+              "message": "Type 'unknown' is not assignable to type 'Record<string, unknown>'.",
+              "snippet": "const data = await parseData({ id: candidateId, data: raw });",
+              "declPkg": "astro",
+              "decl": "export interface ParseDataOptions<TData extends Record<string, unknown>> { /** The ID of the entry. Unique per collection */ id: string; /** The raw, unvalidated data of the entry */ data: TData; /** An optional file path, where the entry represents a local file. */ filePath?: string; }"
+            },
+            {
+              "kind": "error",
+              "key": "error:2322:id@store.set",
+              "code": 2322,
+              "name": "id",
+              "message": "Type 'unknown' is not assignable to type 'string'.",
+              "snippet": "id: data.id,",
+              "declPkg": "astro",
+              "decl": "export interface DataEntry<TData extends Record<string, unknown> = Record<string, unknown>> { /** The ID of the entry. Unique per collection. */ id: string; /** The parsed entry data */ data: TData; /** The file path of the content, if applicable. Relative to the site root. */ filePath?: string; /** The raw body of the content, if applicable. */ body?: string; /** An optional content digest, to check if the content has changed. */ digest?: number | string; /** The rendered content of the entry, if applicable. */ rendered?: RenderedContent; /** * If an entry is a deferred, its rendering phase i …"
+            }
+          ],
+          "unrelated": 2
+        },
+        {
+          "task": "loader",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "loader",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "integration",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "integration",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "integration",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "actions",
+          "sample": 0,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "actions",
+          "sample": 1,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        },
+        {
+          "task": "actions",
+          "sample": 2,
+          "valid": true,
+          "findings": [],
+          "unrelated": 0
+        }
+      ]
+    }
+  ]
+}
