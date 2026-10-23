@@ -4,9 +4,24 @@
   "private": true,
   "type": "module",
   "description": "Measure what a model wrongly believes about a package, and write the smallest card that fixes it.",
-  "bin": { "errata": "./src/cli.ts" },
-  "scripts": { "errata": "node src/cli.ts" },
-  "engines": { "node": ">=24" },
-  "dependencies": { "typescript": "5.9.3" },
-  "devDependencies": { "@types/node": "^24.0.0" }
+  "bin": {
+    "errata": "./src/cli.ts"
+  },
+  "scripts": {
+    "errata": "node src/cli.ts"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "typescript": "5.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jbpete87/errata"
+  }
 }

@@ -7,6 +7,10 @@ realistic tasks from memory, typechecks the answers against the package as publi
 turns each mistake into a one-line correction, then re-asks with the corrections in context
 and keeps only the lines that measurably helped.
 
+First results for `claude-opus-5-5` and `claude-haiku-5-5` across thirteen packages are in
+[FINDINGS.md](FINDINGS.md): the frontier model is mostly current, the smaller one makes nearly
+five times as many build-breaking mistakes, and one-to-six-line cards remove almost all of them.
+
 ## Use
 
 Requires Node 24+ and a logged-in `claude` CLI (`claude auth login`).
@@ -84,3 +88,7 @@ if no card applies any more, the block is removed.
   (see `types`), correct code fails to compile and a bogus line can be "verified" because the
   model simply avoids the construct. Read a new package's first card before trusting it.
 - `sync` reads `package-lock.json` only; pnpm, yarn and bun lockfiles need `node_modules` present.
+
+## License
+
+MIT
